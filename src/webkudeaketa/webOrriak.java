@@ -2,7 +2,6 @@ package webkudeaketa;
 
 import java.util.ArrayList;
 
-public class gako {
-	private String hitza;
+public class webOrriak {
 	private ArrayList<webOrri> lista;
 }

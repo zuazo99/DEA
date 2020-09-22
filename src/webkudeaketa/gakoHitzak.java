@@ -2,6 +2,6 @@ package webkudeaketa;
 
 import java.util.ArrayList;
 
-public class gakohitzak {
+public class gakoHitzak {
 	private ArrayList<gako> listagako;
 }

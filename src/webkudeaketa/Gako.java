@@ -2,7 +2,7 @@ package webkudeaketa;
 
 import java.util.ArrayList;
 
-public class gako {
+public class Gako {
 	private String hitza;
-	private ArrayList<webOrri> lista;
+	private ArrayList<WebOrri> lista;
 }

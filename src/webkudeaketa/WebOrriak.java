@@ -1,12 +1,20 @@
 package webkudeaketa;
 
-import java.util.ArrayList;
+import java.util.*;
 
-public class WebOrriak { //klase hau EMA
-	private ArrayList<webOrri> lista;
-	private static webOrriak nireWebOrriak=null;
+public class WebOrriak { //klase hau EMA,singleton patroia
+	//atributuak
+	private ArrayList<WebOrri> lista;
+	private static WebOrriak nireWebOrriak=null;
 	
+	//eraikitzaileak
 	private WebOrriak(){
-		this.lista=new ArrayList<webOrri>();
+		this.lista=new ArrayList<WebOrri>();
+	}
+	public static synchronized WebOrriak getNireWebOrriak(){
+		if(nireWebOrriak==null){
+			nireWebOrriak=new WebOrriak();
+		}
+		return nireWebOrriak;
 	}
 }

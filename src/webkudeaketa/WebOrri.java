@@ -1,6 +1,8 @@
 package webkudeaketa;
 
+import java.io.FileReader;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class WebOrri {
 	private String url; //la url de cada web, por ejemplo "jimperry.com", es ese formato
@@ -10,7 +12,56 @@ public class WebOrri {
 	private ArrayList<WebOrri> weborriLista;//web orrien zerrenda
 	
 	public WebOrri(String webUrl, Integer ind) //ERAIK.
-	{url=webUrl;
-	indizea=ind;
+	{
+	this.url=webUrl;
+	this.indizea=ind;
+	
 	}
+	
+	public WebOrri(){
+	
+	
+	}
+	//setters and getters
+
+	public String getUrl() {
+		return url;
+	}
+
+
+	public void setUrl(String url) {
+		this.url = url;
+	}
+
+
+	public Integer getIndizea() {
+		return indizea;
+	}
+
+
+	public void setIndizea(Integer indizea) {
+		this.indizea = indizea;
+	}
+
+
+	
+	
+	
+	
+	
+	public void listaKargatu(String nomF){
+		try{
+			FileReader fr=new FileReader(nomF);
+			Scanner sc= new Scanner(fr);
+			while(sc.hasNextLine()){ //lortzen dugu fitxategiaren datuak y me dice si hay siguiente linea(Booleano)
+				String linea=sc.nextLine(); //obtengo una linea del fichero
+				
+			}
+		}
+	}
+
+
+	
+	
+	
 }

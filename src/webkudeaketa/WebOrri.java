@@ -1,8 +1,10 @@
 package webkudeaketa;
 
 import java.io.FileReader;
+
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.util.ArrayList;
 
 public class WebOrri {
 	private String url; //la url de cada web, por ejemplo "jimperry.com", es ese formato

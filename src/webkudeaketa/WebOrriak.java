@@ -5,17 +5,18 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.*;
-import java.util.Scanner;
+
 
 public class WebOrriak { //klase hau EMA,singleton patroia
 	//atributuak
 	private ArrayList<WebOrri> lista;
 	private static WebOrriak nireWebOrriak=null;
-	
-	
+	private HashMap<String,WebOrri> listak=new HashMap<String, WebOrri>();//la busqueda por url de key utilizamos la url 
+		
 	//eraikitzaileak
 	private WebOrriak(){
 		this.lista=new ArrayList<WebOrri>();
+		
 	}
 	public static synchronized WebOrriak getNireWebOrriak(){
 		if(nireWebOrriak==null){
@@ -38,7 +39,7 @@ public class WebOrriak { //klase hau EMA,singleton patroia
 				i++;
 				weborri.setIndizea(Integer.parseInt(StringMoztu[i])); //parse lo que hace es convertir un string a int.
 				this.lista.add(weborri);//gehitzen dugu weborri bat ArrayLista-ra
-				i++;
+				//i++;
 			}
 			sc.close();
 		}
@@ -73,6 +74,7 @@ public class WebOrriak { //klase hau EMA,singleton patroia
 		
 		int aukera=1000;
 		boolean irten=false;
+		WebOrriak.nireWebOrriak.listaKargatu("index");
 		while(!irten){
 			//Scanner eskaner = new Scanner(System.in);
 			System.out.println("Ongi etorri web kudeaketa aplikaziora.");

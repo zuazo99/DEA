@@ -12,6 +12,7 @@ public class WebOrriak { //klase hau EMA,singleton patroia
 	private ArrayList<WebOrri> lista;
 	private static WebOrriak nireWebOrriak=null;
 	
+	
 	//eraikitzaileak
 	private WebOrriak(){
 		this.lista=new ArrayList<WebOrri>();
@@ -80,7 +81,7 @@ public class WebOrriak { //klase hau EMA,singleton patroia
 			System.out.println("1. Web-orri bat bilatu (1 bat idatzi aukeratzeko)\n ");
 			System.out.println("2. Web-orri berri bat txertatu (2 bat idatzi aukeratzeko)\n ");
 			System.out.println("3. Web-orri bat ezabatu (3 bat idatzi aukeratzeko)\n ");
-			System.out.println("4. Web-orri bat emanda, estekatutako zerrenda bueltatu (4 bat idatzi aukeratzeko)\\n ");
+			System.out.println("4. Web-orri bat emanda, estekatutako zerrenda bueltatu (4 bat idatzi aukeratzeko)\n ");
 			System.out.println("5. Gako hitz bat emanda, gako hitza duten web-orrien zerrenda bueltatu (5 bat idatzi aukeratzeko)\n ");
 			System.out.println("6. Web-orrien zerrenda ordenatua lortu (alfabetikoki) (7 bat idatzi aukeratzeko)\n ");
 			//Integer aukera=eskaner.nextInt();
@@ -96,17 +97,17 @@ public class WebOrriak { //klase hau EMA,singleton patroia
 			}
 					//He hecho todo con ifs que seguramente sean 0 eficientes pero creo que es lo mejor.
 					if (aukera == 1){
-						//se ejecutará el método llamado weborriaBilatu(); que buscará una weborri
+						//se ejecutarï¿½ el mï¿½todo llamado weborriaBilatu(); que buscarï¿½ una weborri
 					} else if (aukera==2) {
-						//se ejecutará el método llamado weborriaTxertatu(); que meterá una weborri
+						//se ejecutarï¿½ el mï¿½todo llamado weborriaTxertatu(); que meterï¿½ una weborri
 					} else if (aukera==3) {
-						//se ejecutará el método llamado weborriaEzabatu(); que borrará una weborri
+						//se ejecutarï¿½ el mï¿½todo llamado weborriaEzabatu(); que borrarï¿½ una weborri
 					} else if (aukera==4) {
-						//se ejecutará el método llamado getEstekatutakoZerrenda(); (o algo asi) que devolverá una zerrenda de web orri
+						//se ejecutarï¿½ el mï¿½todo llamado getEstekatutakoZerrenda(); (o algo asi) que devolverï¿½ una zerrenda de web orri
 					} else if (aukera==5) {
-						//se ejecutará el método llamado getGakoWeborrienZerrenda(); (o algo asi) que devolverá una zerrenda de zerrenda de weborri que contengan el gako hitza introducido
+						//se ejecutarï¿½ el mï¿½todo llamado getGakoWeborrienZerrenda(); (o algo asi) que devolverï¿½ una zerrenda de zerrenda de weborri que contengan el gako hitza introducido
 					} else if (aukera==6) {
-						//se ejecutará el método llamado zerrendaOrdenatuaLortu; que devolverá una lista ordenada de weborri
+						//se ejecutarï¿½ el mï¿½todo llamado zerrendaOrdenatuaLortu; que devolverï¿½ una lista ordenada de weborri
 					} else {
 						//System.out.println("Ez duzu ondo aukeratu, saiatu berriro;");
 						irten=true;

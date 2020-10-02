@@ -8,14 +8,12 @@ import java.util.Scanner;
 import java.util.ArrayList;
 
 public class WebOrri {
+	
 	private String url; //la url de cada web, por ejemplo "jimperry.com", es ese formato
 	private Integer indizea; //indice correspondiente a cada weborri
-	
-	private HashMap<String,WebOrri> gakoak=new HashMap<String, WebOrri>();//
-	
+	//private HashMap<String,WebOrri> gakoak=new HashMap<String, WebOrri>();//
 	private ArrayList<Gako> gakoa;//gako zerrenda, es decir, un gako para cada web (todas las webs tienen un gako diferente)
-	//no se si las arraylist van aquí, pero las pongo para acordarme de momento
-	//private ArrayList<WebOrri> weborriLista;//web orrien zerrenda
+	private ArrayList<WebOrri> weborriLista;//lista de las paginas enlazadas
 	
 	public WebOrri(String webUrl, Integer ind) //ERAIK.
 	{

@@ -11,11 +11,12 @@ public class WebOrriak { //klase hau EMA,singleton patroia
 	//atributuak
 	private ArrayList<WebOrri> lista;
 	private static WebOrriak nireWebOrriak=null;
-	private HashMap<String,WebOrri> listak=new HashMap<String, WebOrri>();//la busqueda por url de key utilizamos la url 
+	private HashMap<String,WebOrri> mapaWebOrriak=new HashMap<String, WebOrri>();//la busqueda por url de key utilizamos la url 
 		
 	//eraikitzaileak
 	private WebOrriak(){
 		this.lista=new ArrayList<WebOrri>();
+		this.mapaWebOrriak=new HashMap<String, WebOrri>();
 		
 	}
 	public static synchronized WebOrriak getNireWebOrriak(){
@@ -25,15 +26,25 @@ public class WebOrriak { //klase hau EMA,singleton patroia
 		return nireWebOrriak;
 	}
 	
+	
+	
+	
+	/* ------------------------------------------------------------
+		Fitxategiak tratatzeko dagokien metodoak
+-------------------------------------------------------------*/
+	
+	
 	public void listaKargatu(String nomF){
 		try{
 			FileReader fr=new FileReader(nomF);
 			Scanner sc= new Scanner(fr);
+			WebOrri weborri=null;
+			String linea;
 			int i=0;
 			while(sc.hasNextLine()){ //lortzen dugu fitxategiaren datuak y me dice si hay siguiente linea(Booleano)
-				String linea=sc.nextLine(); //obtengo una linea del fichero
+				linea=sc.nextLine(); //obtengo una linea del fichero
 				String [] StringMoztu= linea.split(" "); //Lortzen dugu web orriaren bi datuak, bata linka eta indizea.
-				WebOrri weborri= new WebOrri(); //objetu berrri bat sortzen dugu weborri motatakoa.
+				weborri= new WebOrri(); //objetu berrri bat sortzen dugu weborri motatakoa.
 				//diria que en la posicion impares del array(StringMoztu) se guardan los indices y pares los links.
 				weborri.setUrl(StringMoztu[i]);
 				i++;

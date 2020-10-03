@@ -35,6 +35,8 @@ public class WebOrriak { //klase hau EMA,singleton patroia
 	
 	
 	public void listaKargatu(String nomF){
+		//aurrebaldintza: fitxategiko datuak string bezala sartuko dira.
+		//postbaldintza: fitxategiko datuak kargatuko dira dagokion datu egituran.
 		try{
 			FileReader fr=new FileReader(nomF);
 			Scanner sc= new Scanner(fr);
@@ -63,6 +65,7 @@ public class WebOrriak { //klase hau EMA,singleton patroia
 	}
 	
 	public static int irakurriZenb() throws NumberFormatException {
+		//postbaldintza: zenbaki bat irakurriko du.
 		Scanner sc = new Scanner(System.in);
 		int zenb = 0;
 		boolean denaOndo=false;
@@ -82,7 +85,7 @@ public class WebOrriak { //klase hau EMA,singleton patroia
 	
 	
 	public static void main(String[] args) {
-		
+		//postbaldintza: kontsolan kontrol menu bat agertuko da aukerekin.
 		int aukera=1000;
 		boolean irten=false;
 		WebOrriak.nireWebOrriak.listaKargatu("index");

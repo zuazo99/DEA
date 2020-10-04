@@ -111,7 +111,7 @@ public class WebOrriak { //klase hau EMA,singleton patroia
 					System.out.println("Aukeratu 1-etik 6-rako zenbaki bat");
 				}
 			}
-					//He hecho todo con ifs que seguramente sean 0 eficientes pero creo que es lo mejor.
+					
 					if (aukera == 1){
 						//se ejecutar� el m�todo llamado weborriaBilatu(); que buscar� una weborri
 					} else if (aukera==2) {

@@ -26,6 +26,115 @@ public class WebOrriak { //klase hau EMA,singleton patroia
 		return nireWebOrriak;
 	}
 	
+	public WebOrri bilatuWebOrri(String url){
+		//null itzultzen du weborria ez badago
+		return this.mapaWebOrriak.get(url);
+	}
+	
+	public void gehituWebOrria(WebOrri web){
+		//weborria HashMapean ez badago bertara gehituko da.
+		if(!this.mapaWebOrriak.containsKey(web.getUrl())){
+			this.mapaWebOrriak.put(web.getUrl(), web);
+		}
+	}
+	
+	public WebOrri[] WebOrriHashMapToArray(HashMap<String, WebOrri> mapa){
+		//beste metodo batzuk gauzatzeko erabilitak
+		Object[] lag=mapa.keySet().toArray();
+		WebOrri[] emaitza= new WebOrri[lag.length];
+		for(int i=0; i<lag.length; i++){
+			emaitza[i]=mapa.get(lag[i]);
+		}
+		return emaitza;
+	}
+	
+	
+	public String id2String(int x){
+		//Postbaldintza: osoko bat emanda, dagokion web-orria itzuliko du
+		WebOrri web=this.lista.get(x);
+		String url=null;
+		if(web!=null){
+			url= web.getUrl();
+		}
+		return url;
+	}
+	
+	public int string2Id(String s){
+		//Adibidez: string2Id(“0-apr-creditcards.com”) → 18
+		WebOrri web=null;
+		if(this.mapaWebOrriak.containsKey(s)){
+			web=this.mapaWebOrriak.get(s);
+		}
+		return web.getIndizea();
+	}
+	
+	public WebOrri[] ordenatuWebOrriMapa(){
+		//quickSort algortimoa erabiliz weborrien
+		//mapa ordenatzen ditu, oso eraginkorra
+		WebOrri[] weborri=this.WebOrriHashMapToArray(mapaWebOrriak);
+		quickSort(weborri);
+		
+		return weborri;
+	}
+	
+	
+	/* ------------------------------------------------------------
+		QuickSort algoritmoa, aktoreak ordenatzeko
+-------------------------------------------------------------*/
+	
+	 public void quickSort(WebOrri[] taula){
+			quickSort(taula, 0, taula.length-1);
+		  }
+
+	 private void quickSort(WebOrri[ ] taulaBat, int hasiera, int bukaera){
+			if ( bukaera - hasiera> 0 ) { // taulan elementu bat baino gehiago
+			  int indizeaZatiketa = zatiketa(taulaBat, hasiera, bukaera);
+			  quickSort(taulaBat, hasiera, indizeaZatiketa - 1);
+			  quickSort(taulaBat, indizeaZatiketa + 1, bukaera);
+			}
+	 }
+
+	private int zatiketa(WebOrri[] taula, int i, int f) {
+			WebOrri lag = taula[i];
+			int ezker = i;
+			int eskuin = f;
+			while ( ezker < eskuin ){
+			  while ( taula[ezker].compareTo(lag) <= 0 && ezker < eskuin)
+				ezker++;
+			  while ( taula[eskuin].compareTo(lag) > 0 )
+				eskuin--;
+			  if ( ezker < eskuin ) {
+				taula = swap(taula, ezker, eskuin);
+			  }
+			}
+			taula[i] = taula[eskuin];
+			taula[eskuin] = lag;
+			return eskuin;
+	}
+
+	private WebOrri[] swap(WebOrri[] taula, int ezker, int eskuin) {
+			//quickSort() metodoan erabiltzen da
+			WebOrri lag = taula[ezker];
+			taula[ezker] = taula[eskuin];
+			taula[eskuin] = lag;
+			return taula;
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	
 	
@@ -113,17 +222,17 @@ public class WebOrriak { //klase hau EMA,singleton patroia
 			}
 					
 					if (aukera == 1){
-						//se ejecutar� el m�todo llamado weborriaBilatu(); que buscar� una weborri
+						//se ejecutarï¿½ el mï¿½todo llamado weborriaBilatu(); que buscarï¿½ una weborri
 					} else if (aukera==2) {
-						//se ejecutar� el m�todo llamado weborriaTxertatu(); que meter� una weborri
+						//se ejecutarï¿½ el mï¿½todo llamado weborriaTxertatu(); que meterï¿½ una weborri
 					} else if (aukera==3) {
-						//se ejecutar� el m�todo llamado weborriaEzabatu(); que borrar� una weborri
+						//se ejecutarï¿½ el mï¿½todo llamado weborriaEzabatu(); que borrarï¿½ una weborri
 					} else if (aukera==4) {
-						//se ejecutar� el m�todo llamado getEstekatutakoZerrenda(); (o algo asi) que devolver� una zerrenda de web orri
+						//se ejecutarï¿½ el mï¿½todo llamado getEstekatutakoZerrenda(); (o algo asi) que devolverï¿½ una zerrenda de web orri
 					} else if (aukera==5) {
-						//se ejecutar� el m�todo llamado getGakoWeborrienZerrenda(); (o algo asi) que devolver� una zerrenda de zerrenda de weborri que contengan el gako hitza introducido
+						//se ejecutarï¿½ el mï¿½todo llamado getGakoWeborrienZerrenda(); (o algo asi) que devolverï¿½ una zerrenda de zerrenda de weborri que contengan el gako hitza introducido
 					} else if (aukera==6) {
-						//se ejecutar� el m�todo llamado zerrendaOrdenatuaLortu; que devolver� una lista ordenada de weborri
+						//se ejecutarï¿½ el mï¿½todo llamado zerrendaOrdenatuaLortu; que devolverï¿½ una lista ordenada de weborri
 					} else {
 						//System.out.println("Ez duzu ondo aukeratu, saiatu berriro;");
 						irten=true;

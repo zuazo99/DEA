@@ -9,13 +9,13 @@ import java.util.ArrayList;
 
 public class WebOrri {
 	
-	private String url; //la url de cada web, por ejemplo "jimperry.com", es ese formato
-	private Integer indizea; //indice correspondiente a cada weborri
+	private String url; //weborriaren url-a.
+	private Integer indizea; //weborri bakoitzaren url-a.
 	//private HashMap<String,WebOrri> gakoak=new HashMap<String, WebOrri>();//
-	private ArrayList<Gako> gakoa;//gako zerrenda, es decir, un gako para cada web (todas las webs tienen un gako diferente)
-	private ArrayList<WebOrri> weborriLista;//lista de las paginas enlazadas
+	private ArrayList<Gako> gakoa;//gako zerrenda
+	private ArrayList<WebOrri> weborriLista;//erlazionatuko weborrien lista
 	
-	public WebOrri(String webUrl, Integer ind) //ERAIK.
+	public WebOrri(String webUrl, Integer ind) //ERAIKITZAILEAK
 	{
 	this.url=webUrl;
 	this.indizea=ind;
@@ -29,21 +29,27 @@ public class WebOrri {
 	//setters and getters
 
 	public String getUrl() {
+		//postbaldintza: url-a bueltatuko du.
 		return url;
 	}
 
 
 	public void setUrl(String url) {
+		//aurrebaldintza: url bat sartuko da.
+		//postbaldintza: url-a aktualizatuta geratuko da.
 		this.url = url;
 	}
 
 
 	public Integer getIndizea() {
+		//postbaldintza: indizea bueltatuko du.
 		return indizea;
 	}
 
 
 	public void setIndizea(Integer indizea) {
+		//aurrebaldintza: indize bat sartuko da.
+		//postbaldintza: indizea aktualizatuta geratuko da.
 		this.indizea = indizea;
 	}
 

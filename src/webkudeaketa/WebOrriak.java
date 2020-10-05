@@ -202,7 +202,7 @@ public class WebOrriak { //klase hau EMA,singleton patroia
 		//postbaldintza: kontsolan kontrol menu bat agertuko da aukerekin.
 		int aukera=1000;
 		boolean irten=false;
-		WebOrriak.nireWebOrriak.listaKargatu("index");
+		WebOrriak.getNireWebOrriak().listaKargatu("index");
 		while(!irten){
 			//Scanner eskaner = new Scanner(System.in);
 			System.out.println("Ongi etorri web kudeaketa aplikaziora.");
@@ -227,11 +227,11 @@ public class WebOrriak { //klase hau EMA,singleton patroia
 			}
 					
 					if (aukera == 1){
-						System.out.println("Idatzi sartu nahi duzun url-a eta Enter tekla sakatu:\n");
+						System.out.println("Idatzi bilatu nahi duzun url-a eta Enter tekla sakatu:\n");
 						Scanner eskaner = new Scanner(System.in);
 						String urlbilatu=eskaner.nextLine();
 						System.out.println("Hona hemen bilaketaren emaitza:\n");
-						bilatuWebOrri(urlbilatu);
+						getNireWebOrriak().bilatuWebOrri(urlbilatu);
 						
 						
 					} else if (aukera==2) {
@@ -241,7 +241,8 @@ public class WebOrriak { //klase hau EMA,singleton patroia
 						webberria.setUrl(eskaner.nextLine());
 						System.out.println("Orain idatzi sartu nahi duzun WebOrriaren indizea eta Enter tekla sakatu:\n");
 						webberria.setIndizea(eskaner.nextInt());
-						gehituWebOrria(webberria);
+						getNireWebOrriak().gehituWebOrria(webberria);
+						System.out.println("EGINDA!\n");
 						
 						
 					} else if (aukera==3) {

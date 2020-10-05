@@ -5,7 +5,7 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.*;
-
+import java.util.Scanner;
 
 public class WebOrriak { //klase hau EMA,singleton patroia
 	//atributuak
@@ -27,18 +27,22 @@ public class WebOrriak { //klase hau EMA,singleton patroia
 	}
 	
 	public WebOrri bilatuWebOrri(String url){
-		//null itzultzen du weborria ez badago
+		//aurre: String motako url-a sartuko da
+		//post: url-a bueltatuko du eta null itzuliko du weborria ez badago
 		return this.mapaWebOrriak.get(url);
 	}
 	
 	public void gehituWebOrria(WebOrri web){
-		//weborria HashMapean ez badago bertara gehituko da.
+		//aurre: weborri bat sartuko da parametro bezala
+		//post:weborria HashMapean ez badago bertara gehituko da.
 		if(!this.mapaWebOrriak.containsKey(web.getUrl())){
 			this.mapaWebOrriak.put(web.getUrl(), web);
 		}
 	}
 	
 	public WebOrri[] WebOrriHashMapToArray(HashMap<String, WebOrri> mapa){
+		//aurre: HashMap bat sartuko da parametro bezala.
+		//post: HashMap-a WebOrri lista batean bihurtuko da.
 		//beste metodo batzuk gauzatzeko erabilitak
 		Object[] lag=mapa.keySet().toArray();
 		WebOrri[] emaitza= new WebOrri[lag.length];
@@ -60,7 +64,8 @@ public class WebOrriak { //klase hau EMA,singleton patroia
 	}
 	
 	public int string2Id(String s){
-		//Adibidez: string2Id(“0-apr-creditcards.com”) → 18
+		//aurre: String bat (weborri bat) sartuko da parametro bezala.
+		//post: Weborii horri dagokion indizea bueltatuko du, adibidez: string2Id(“0-apr-creditcards.com”) → 18
 		WebOrri web=null;
 		if(this.mapaWebOrriak.containsKey(s)){
 			web=this.mapaWebOrriak.get(s);
@@ -69,8 +74,8 @@ public class WebOrriak { //klase hau EMA,singleton patroia
 	}
 	
 	public WebOrri[] ordenatuWebOrriMapa(){
-		//quickSort algortimoa erabiliz weborrien
-		//mapa ordenatzen ditu, oso eraginkorra
+		//post: quickSort algortimoa erabiliz weborrien
+		//mapa ordenatzen ditu, oso eraginkorra -> O(nlog2n)
 		WebOrri[] weborri=this.WebOrriHashMapToArray(mapaWebOrriak);
 		quickSort(weborri);
 		
@@ -78,9 +83,9 @@ public class WebOrriak { //klase hau EMA,singleton patroia
 	}
 	
 	
-	/* ------------------------------------------------------------
-		QuickSort algoritmoa, aktoreak ordenatzeko
--------------------------------------------------------------*/
+	
+		//QuickSort algoritmoa, web orriak ordenatzeko
+
 	
 	 public void quickSort(WebOrri[] taula){
 			quickSort(taula, 0, taula.length-1);
@@ -138,9 +143,9 @@ public class WebOrriak { //klase hau EMA,singleton patroia
 	
 	
 	
-	/* ------------------------------------------------------------
-		Fitxategiak tratatzeko dagokien metodoak
--------------------------------------------------------------*/
+	
+		//Fitxategiak tratatzeko metodoak
+
 	
 	
 	public void listaKargatu(String nomF){
@@ -222,9 +227,23 @@ public class WebOrriak { //klase hau EMA,singleton patroia
 			}
 					
 					if (aukera == 1){
-						//se ejecutarï¿½ el mï¿½todo llamado weborriaBilatu(); que buscarï¿½ una weborri
+						System.out.println("Idatzi sartu nahi duzun url-a eta Enter tekla sakatu:\n");
+						Scanner eskaner = new Scanner(System.in);
+						String urlbilatu=eskaner.nextLine();
+						System.out.println("Hona hemen bilaketaren emaitza:\n");
+						bilatuWebOrri(urlbilatu);
+						
+						
 					} else if (aukera==2) {
-						//se ejecutarï¿½ el mï¿½todo llamado weborriaTxertatu(); que meterï¿½ una weborri
+						System.out.println("Lehenik eta behin idatzi sartu nahi duzun WebOrriaren url-a eta Enter tekla sakatu:\n");
+						WebOrri webberria= new WebOrri();
+						Scanner eskaner = new Scanner(System.in);
+						webberria.setUrl(eskaner.nextLine());
+						System.out.println("Orain idatzi sartu nahi duzun WebOrriaren indizea eta Enter tekla sakatu:\n");
+						webberria.setIndizea(eskaner.nextInt());
+						gehituWebOrria(webberria);
+						
+						
 					} else if (aukera==3) {
 						//se ejecutarï¿½ el mï¿½todo llamado weborriaEzabatu(); que borrarï¿½ una weborri
 					} else if (aukera==4) {

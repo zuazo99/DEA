@@ -147,6 +147,33 @@ public class WebOrriak { //klase hau EMA,singleton patroia
 		//Fitxategiak tratatzeko metodoak
 
 	
+	public void datuakKargatu(){
+		//aurrebaldintza: fitxategiko datuak string bezala sartuko dira.
+		//postbaldintza: fitxategiko datuak kargatuko dira dagokion datu egituran.
+		
+		try{
+			Scanner sc= new Scanner(new FileReader("index.txt"));
+			String [] StringMoztu=null;
+			WebOrri weborri=null;
+			String url=null;
+			String indizea=null;
+			while(sc.hasNext()){
+				StringMoztu=sc.nextLine().split(" ");
+				url=StringMoztu[0];
+				indizea=StringMoztu[1];
+				weborri=new WebOrri(url, Integer.parseInt(indizea));
+				this.gehituWebOrria(weborri);
+			}
+			sc.close();
+		}
+		catch(FileNotFoundException e){
+			System.out.println("Ez da aurkitu fitxategia");
+		}
+		catch(IOException e){
+			e.printStackTrace();
+		}
+	}
+	
 	
 	public void listaKargatu(String nomF){
 		//aurrebaldintza: fitxategiko datuak string bezala sartuko dira.
@@ -202,7 +229,7 @@ public class WebOrriak { //klase hau EMA,singleton patroia
 		//postbaldintza: kontsolan kontrol menu bat agertuko da aukerekin.
 		int aukera=1000;
 		boolean irten=false;
-		WebOrriak.getNireWebOrriak().listaKargatu("index");
+		WebOrriak.getNireWebOrriak().datuakKargatu();
 		while(!irten){
 			//Scanner eskaner = new Scanner(System.in);
 			System.out.println("Ongi etorri web kudeaketa aplikaziora.");

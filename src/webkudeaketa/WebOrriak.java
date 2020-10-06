@@ -143,16 +143,15 @@ public class WebOrriak { //klase hau EMA,singleton patroia
 	
 	
 	
-	
-		//Fitxategiak tratatzeko metodoak
 
+	//Fitxategiak tratatzeko metodoak
 	
 	public void datuakKargatu(){
 		//aurrebaldintza: fitxategiko datuak string bezala sartuko dira.
 		//postbaldintza: fitxategiko datuak kargatuko dira dagokion datu egituran.
 		
 		try{
-			Scanner sc= new Scanner(new FileReader("index.txt"));
+			Scanner sc= new Scanner(new FileReader("index"));
 			String [] StringMoztu=null;
 			WebOrri weborri=null;
 			String url=null;
@@ -174,7 +173,7 @@ public class WebOrriak { //klase hau EMA,singleton patroia
 		}
 	}
 	
-	
+	/*
 	public void listaKargatu(String nomF){
 		//aurrebaldintza: fitxategiko datuak string bezala sartuko dira.
 		//postbaldintza: fitxategiko datuak kargatuko dira dagokion datu egituran.
@@ -204,7 +203,7 @@ public class WebOrriak { //klase hau EMA,singleton patroia
 			e.printStackTrace();
 		}
 	}
-	
+	*/
 	public static int irakurriZenb() throws NumberFormatException {
 		//postbaldintza: zenbaki bat irakurriko du.
 		Scanner sc = new Scanner(System.in);

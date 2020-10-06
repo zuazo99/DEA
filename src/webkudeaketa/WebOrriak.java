@@ -39,6 +39,9 @@ public class WebOrriak { //klase hau EMA,singleton patroia
 			this.mapaWebOrriak.put(web.getUrl(), web);
 		}
 	}
+	public void gehituArrayList(WebOrri web){
+		 this.lista.add(web);
+	}
 	
 	public WebOrri[] WebOrriHashMapToArray(HashMap<String, WebOrri> mapa){
 		//aurre: HashMap bat sartuko da parametro bezala.
@@ -161,7 +164,8 @@ public class WebOrriak { //klase hau EMA,singleton patroia
 				url=StringMoztu[0];
 				indizea=StringMoztu[1];
 				weborri=new WebOrri(url, Integer.parseInt(indizea));
-				this.gehituWebOrria(weborri);
+				this.gehituWebOrria(weborri);//hasmap-era gehitu
+				this.gehituArrayList(weborri);//arraylist-era gehitu
 			}
 			sc.close();
 		}

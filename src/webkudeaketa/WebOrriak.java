@@ -149,7 +149,7 @@ public class WebOrriak { //klase hau EMA,singleton patroia
 
 	//Fitxategiak tratatzeko metodoak
 	
-	public void datuakKargatu(){
+	public void listaKargatu(){
 		//aurrebaldintza: fitxategiko datuak string bezala sartuko dira.
 		//postbaldintza: fitxategiko datuak kargatuko dira dagokion datu egituran.
 		
@@ -232,7 +232,7 @@ public class WebOrriak { //klase hau EMA,singleton patroia
 		//postbaldintza: kontsolan kontrol menu bat agertuko da aukerekin.
 		int aukera=1000;
 		boolean irten=false;
-		WebOrriak.getNireWebOrriak().datuakKargatu();
+		WebOrriak.getNireWebOrriak().listaKargatu();
 		while(!irten){
 			//Scanner eskaner = new Scanner(System.in);
 			System.out.println("Ongi etorri web kudeaketa aplikaziora.");

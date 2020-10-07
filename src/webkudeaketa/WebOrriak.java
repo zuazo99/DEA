@@ -261,7 +261,7 @@ public class WebOrriak { //klase hau EMA,singleton patroia
 						Scanner eskaner = new Scanner(System.in);
 						String urlbilatu=eskaner.nextLine();
 						System.out.println("Hona hemen bilaketaren emaitza:\n");
-						getNireWebOrriak().bilatuWebOrri(urlbilatu);
+						WebOrriak.getNireWebOrriak().bilatuWebOrri(urlbilatu);
 						
 						
 					} else if (aukera==2) {

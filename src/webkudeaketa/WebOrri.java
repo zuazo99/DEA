@@ -55,7 +55,7 @@ public class WebOrri {
 
 
 	public int compareTo(WebOrri lag) {
-		//Bi aktoreen izenak konparatzen ditu
+		//Bi webeen url-ak konparatzen ditu
 		return this.url.compareTo(lag.getUrl());
 	}
 	

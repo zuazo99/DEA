@@ -76,6 +76,12 @@ public class WebOrriak { //klase hau EMA,singleton patroia
 		return web.getIndizea();
 	}
 	
+	
+	public ArrayList<WebOrri> irteerakoEstekak(String s){
+		WebOrri web=this.bilatuWebOrri(s);
+		return web.getWeborriLista();
+	}
+	
 	public WebOrri[] ordenatuWebOrriMapa(){
 		//post: quickSort algortimoa erabiliz weborrien
 		//mapa ordenatzen ditu, oso eraginkorra -> O(nlog2n)
@@ -84,6 +90,13 @@ public class WebOrriak { //klase hau EMA,singleton patroia
 		
 		return weborri;
 	}
+	
+	
+	
+	
+	
+	
+	
 	
 	
 	
@@ -271,7 +284,7 @@ public class WebOrriak { //klase hau EMA,singleton patroia
 						Scanner eskaner = new Scanner(System.in);
 						webberria.setUrl(eskaner.nextLine());
 						System.out.println("Orain idatzi sartu nahi duzun WebOrriaren indizea eta Enter tekla sakatu:\n");
-						webberria.setIndizea(eskaner.nextInt());
+						webberria.setIndizea(WebOrriak.getNireWebOrriak().irakurriZenb());
 						getNireWebOrriak().gehituWebOrria(webberria);
 						System.out.println("EGINDA!\n");
 						
@@ -280,11 +293,25 @@ public class WebOrriak { //klase hau EMA,singleton patroia
 						//se ejecutarï¿½ el mï¿½todo llamado weborriaEzabatu(); que borrarï¿½ una weborri
 					} else if (aukera==4) {
 						//se ejecutarï¿½ el mï¿½todo llamado getEstekatutakoZerrenda(); (o algo asi) que devolverï¿½ una zerrenda de web orri
+						System.out.println("Lehenik eta behin idatzi sartu nahi duzun WebOrriaren url-a eta Enter tekla sakatu:\n");
+						
+						Scanner sc = new Scanner(System.in);
+						String s=sc.nextLine();
+				
+						ArrayList<WebOrri> lista=null;
+						lista=WebOrriak.getNireWebOrriak().irteerakoEstekak(s);
+						
 					} else if (aukera==5) {
 						//se ejecutarï¿½ el mï¿½todo llamado getGakoWeborrienZerrenda(); (o algo asi) que devolverï¿½ una zerrenda de zerrenda de weborri que contengan el gako hitza introducido
+						
 					} else if (aukera==6) {
 						//se ejecutarï¿½ el mï¿½todo llamado zerrendaOrdenatuaLortu; que devolverï¿½ una lista ordenada de weborri
-						
+						WebOrri[] web=null;
+						web=WebOrriak.getNireWebOrriak().ordenatuWebOrriMapa();
+						for(int i=0;i<web.length;i++){
+							System.out.println(web[i].getUrl()+" "+web[i].getIndizea());
+							//i=web[i].
+						}
 					} else {
 						//System.out.println("Ez duzu ondo aukeratu, saiatu berriro;");
 						irten=true;

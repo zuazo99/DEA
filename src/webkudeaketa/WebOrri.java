@@ -58,9 +58,17 @@ public class WebOrri {
 		//Bi webeen url-ak konparatzen ditu
 		return this.url.compareTo(lag.getUrl());
 	}
+
+	public ArrayList<WebOrri> getWeborriLista() {
+		return weborriLista;
+	}
+
+	public void setWeborriLista(ArrayList<WebOrri> weborriLista) {
+		this.weborriLista = weborriLista;
+	}
 	
 	
-	
+	/*
 	public void listaKargatu(String nomF){
 		/*try{
 			FileReader fr=new FileReader(nomF);
@@ -71,8 +79,8 @@ public class WebOrri {
 			}
 		//}
 		//catch(){}*/
-	}
-
+	//}
+	
 
 	
 }

@@ -261,7 +261,8 @@ public class WebOrriak { //klase hau EMA,singleton patroia
 						Scanner eskaner = new Scanner(System.in);
 						String urlbilatu=eskaner.nextLine();
 						System.out.println("Hona hemen bilaketaren emaitza:\n");
-						WebOrriak.getNireWebOrriak().bilatuWebOrri(urlbilatu);
+						WebOrri web=WebOrriak.getNireWebOrriak().bilatuWebOrri(urlbilatu);
+						System.out.println(web.getUrl()+" "+web.getIndizea());
 						
 						
 					} else if (aukera==2) {
@@ -283,6 +284,7 @@ public class WebOrriak { //klase hau EMA,singleton patroia
 						//se ejecutarï¿½ el mï¿½todo llamado getGakoWeborrienZerrenda(); (o algo asi) que devolverï¿½ una zerrenda de zerrenda de weborri que contengan el gako hitza introducido
 					} else if (aukera==6) {
 						//se ejecutarï¿½ el mï¿½todo llamado zerrendaOrdenatuaLortu; que devolverï¿½ una lista ordenada de weborri
+						
 					} else {
 						//System.out.println("Ez duzu ondo aukeratu, saiatu berriro;");
 						irten=true;

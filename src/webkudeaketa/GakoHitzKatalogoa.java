@@ -41,7 +41,16 @@ public class GakoHitzKatalogoa { //EMA orduan singleton patroia
 		 this.listagako.add(gako);
 	}
 	
-	
+	public ArrayList<WebOrri> word2Webs(String s){
+		// pre: “s” gako-hitz bat da
+		// post: “s” gako-hitza daukaten web-orriak itzultzen ditu
+		ArrayList<WebOrri> webLista=null;
+		if(this.mapaGako.containsKey(s)){
+			GakoHitz gako=this.mapaGako.get(s);
+			webLista=gako.getLista();
+		}
+		return webLista;
+	}
 	
 	
 	

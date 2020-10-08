@@ -27,7 +27,9 @@ public class GakoHitz {
 	}
 	
 	public void gehituWeba(WebOrri web){
-		this.lista.add(web);
+		if(web!=null){
+			this.lista.add(web);
+		}
 	}
 	
 	

@@ -25,6 +25,9 @@ public class WebKatalogoa { //klase hau EMA,singleton patroia
 		}
 		return nireWebOrriak;
 	}
+	public HashMap<String, WebOrri> getMapaWebOrriak() {
+		return mapaWebOrriak;
+	}
 	
 	public WebOrri bilatuWebOrri(String url){
 		//aurre: String motako url-a sartuko da
@@ -246,6 +249,8 @@ public class WebKatalogoa { //klase hau EMA,singleton patroia
 		int aukera=1000;
 		boolean irten=false;
 		WebKatalogoa.getNireWebOrriak().listaKargatu();
+		GakoHitzKatalogoa.getNireGakoHitzak().listaKargatu();
+
 		while(!irten){
 			//Scanner eskaner = new Scanner(System.in);
 			System.out.println("Ongi etorri web kudeaketa aplikaziora.");
@@ -305,7 +310,15 @@ public class WebKatalogoa { //klase hau EMA,singleton patroia
 						}
 					} else if (aukera==5) {
 						//se ejecutarï¿½ el mï¿½todo llamado getGakoWeborrienZerrenda(); (o algo asi) que devolverï¿½ una zerrenda de zerrenda de weborri que contengan el gako hitza introducido
-						
+						GakoHitzKatalogoa.getNireGakoHitzak().webakKargatu(WebKatalogoa.getNireWebOrriak().getMapaWebOrriak());
+						System.out.println("Lehenik eta behin idatzi sartu nahi duzun WebOrriaren url-a eta Enter tekla sakatu:\n");
+						Scanner sc = new Scanner(System.in);
+						String s=sc.nextLine();
+						ArrayList<WebOrri> lista=null;
+						lista=GakoHitzKatalogoa.getNireGakoHitzak().word2Webs(s);
+						for(WebOrri x:lista){
+							System.out.println(x.getUrl());
+						}
 					} else if (aukera==6) {
 						//se ejecutarï¿½ el mï¿½todo llamado zerrendaOrdenatuaLortu; que devolverï¿½ una lista ordenada de weborri
 						WebOrri[] web=null;
@@ -321,5 +334,6 @@ public class WebKatalogoa { //klase hau EMA,singleton patroia
 		}
 	
 	}
+	
 	
 }

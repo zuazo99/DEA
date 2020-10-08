@@ -71,5 +71,19 @@ public class GakoHitzKatalogoa { //EMA orduan singleton patroia
 				e.printStackTrace();
 			}
 		}
-		public void webakKargartu(){}
+		public void webakKargatu(HashMap<String, WebOrri> mapa){
+			
+			
+			for(Map.Entry<String,GakoHitz> x:this.mapaGako.entrySet()){
+				String hitza=x.getKey();
+				GakoHitz gakoa=x.getValue();
+				for(Map.Entry<String, WebOrri> y:mapa.entrySet()){
+					String url=y.getKey();
+					WebOrri weba=y.getValue();
+					if(url.contains(hitza)){
+						gakoa.gehituWeba(weba);
+					}
+				}
+			}
+		}
 }

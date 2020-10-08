@@ -7,11 +7,11 @@ import org.junit.Before;
 import org.junit.Test;
 
 import webkudeaketa.WebOrri;
-import webkudeaketa.WebOrriak;
+import webkudeaketa.WebKatalogoa;
 
 public class WebOrriakTest {
 	
-	WebOrriak weborriak=WebOrriak.getNireWebOrriak();
+	WebKatalogoa weborriak=WebKatalogoa.getNireWebOrriak();
 	WebOrri web,web1;
 	@Before
 	public void setUp() throws Exception {

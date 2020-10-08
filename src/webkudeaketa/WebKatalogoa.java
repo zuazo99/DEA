@@ -7,21 +7,21 @@ import java.io.IOException;
 import java.util.*;
 import java.util.Scanner;
 
-public class WebOrriak { //klase hau EMA,singleton patroia
+public class WebKatalogoa { //klase hau EMA,singleton patroia
 	//atributuak
 	private ArrayList<WebOrri> lista;
-	private static WebOrriak nireWebOrriak=null;
+	private static WebKatalogoa nireWebOrriak=null;
 	private HashMap<String,WebOrri> mapaWebOrriak=new HashMap<String, WebOrri>();//la busqueda por url de key utilizamos la url 
 		
 	//eraikitzaileak
-	private WebOrriak(){
+	private WebKatalogoa(){
 		this.lista=new ArrayList<WebOrri>();
 		this.mapaWebOrriak=new HashMap<String, WebOrri>();
 		
 	}
-	public static synchronized WebOrriak getNireWebOrriak(){
+	public static synchronized WebKatalogoa getNireWebOrriak(){
 		if(nireWebOrriak==null){
-			nireWebOrriak=new WebOrriak();
+			nireWebOrriak=new WebKatalogoa();
 		}
 		return nireWebOrriak;
 	}
@@ -245,7 +245,7 @@ public class WebOrriak { //klase hau EMA,singleton patroia
 		//postbaldintza: kontsolan kontrol menu bat agertuko da aukerekin.
 		int aukera=1000;
 		boolean irten=false;
-		WebOrriak.getNireWebOrriak().listaKargatu();
+		WebKatalogoa.getNireWebOrriak().listaKargatu();
 		while(!irten){
 			//Scanner eskaner = new Scanner(System.in);
 			System.out.println("Ongi etorri web kudeaketa aplikaziora.");
@@ -260,7 +260,7 @@ public class WebOrriak { //klase hau EMA,singleton patroia
 			//Integer aukera=eskaner.nextInt();
 			boolean aukeraEgokia=false;
 			while(!aukeraEgokia){
-				aukera=WebOrriak.irakurriZenb();
+				aukera=WebKatalogoa.irakurriZenb();
 				if(aukera>=1 && aukera<=6){
 					aukeraEgokia=true;
 				}
@@ -274,7 +274,7 @@ public class WebOrriak { //klase hau EMA,singleton patroia
 						Scanner eskaner = new Scanner(System.in);
 						String urlbilatu=eskaner.nextLine();
 						System.out.println("Hona hemen bilaketaren emaitza:\n");
-						WebOrri web=WebOrriak.getNireWebOrriak().bilatuWebOrri(urlbilatu);
+						WebOrri web=WebKatalogoa.getNireWebOrriak().bilatuWebOrri(urlbilatu);
 						System.out.println(web.getUrl()+" "+web.getIndizea());
 						
 						
@@ -284,7 +284,7 @@ public class WebOrriak { //klase hau EMA,singleton patroia
 						Scanner eskaner = new Scanner(System.in);
 						webberria.setUrl(eskaner.nextLine());
 						System.out.println("Orain idatzi sartu nahi duzun WebOrriaren indizea eta Enter tekla sakatu:\n");
-						webberria.setIndizea(WebOrriak.getNireWebOrriak().irakurriZenb());
+						webberria.setIndizea(WebKatalogoa.getNireWebOrriak().irakurriZenb());
 						getNireWebOrriak().gehituWebOrria(webberria);
 						System.out.println("EGINDA!\n");
 						
@@ -299,15 +299,17 @@ public class WebOrriak { //klase hau EMA,singleton patroia
 						String s=sc.nextLine();
 				
 						ArrayList<WebOrri> lista=null;
-						lista=WebOrriak.getNireWebOrriak().irteerakoEstekak(s);
-						
+						lista=WebKatalogoa.getNireWebOrriak().irteerakoEstekak(s);
+						for(WebOrri x:lista){
+							System.out.println(x.getUrl());
+						}
 					} else if (aukera==5) {
 						//se ejecutarï¿½ el mï¿½todo llamado getGakoWeborrienZerrenda(); (o algo asi) que devolverï¿½ una zerrenda de zerrenda de weborri que contengan el gako hitza introducido
 						
 					} else if (aukera==6) {
 						//se ejecutarï¿½ el mï¿½todo llamado zerrendaOrdenatuaLortu; que devolverï¿½ una lista ordenada de weborri
 						WebOrri[] web=null;
-						web=WebOrriak.getNireWebOrriak().ordenatuWebOrriMapa();
+						web=WebKatalogoa.getNireWebOrriak().ordenatuWebOrriMapa();
 						for(int i=0;i<web.length;i++){
 							System.out.println(web[i].getUrl()+" "+web[i].getIndizea());
 							//i=web[i].

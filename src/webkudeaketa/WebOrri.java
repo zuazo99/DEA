@@ -12,7 +12,7 @@ public class WebOrri {
 	private String url; //weborriaren url-a.
 	private Integer indizea; //weborri bakoitzaren url-a.
 	//private HashMap<String,WebOrri> gakoak=new HashMap<String, WebOrri>();//
-	private ArrayList<Gako> gakoa;//gako zerrenda
+	private ArrayList<GakoHitz> gakoa;//gako zerrenda
 	private ArrayList<WebOrri> weborriLista;//erlazionatuko weborrien lista
 	
 	public WebOrri(String webUrl, Integer ind) //ERAIKITZAILEAK

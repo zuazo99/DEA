@@ -24,9 +24,9 @@ public class GakoHitzKatalogoa { //EMA orduan singleton patroia
 		return nireGakoHitzak;
 	}
 	
-	public GakoHitz bilatuWebOrri(String s){
+	public GakoHitz gakoaItzuli(String s){
 		//aurre: String motako hitza sartuko da
-		//post: bueltatuko du eta null itzuliko du weborria ez badago
+		//post: bueltatuko du eta null itzuliko du String ez badago
 		return this.mapaGako.get(s);
 	}
 	
@@ -70,6 +70,7 @@ public class GakoHitzKatalogoa { //EMA orduan singleton patroia
 					gako=new GakoHitz(hitza);
 					this.gehituWebOrria(gako);//hasmap-era gehitu
 					this.gehituArrayList(gako);//arraylist-era gehitu
+					
 				}
 				sc.close();
 			}
@@ -80,19 +81,20 @@ public class GakoHitzKatalogoa { //EMA orduan singleton patroia
 				e.printStackTrace();
 			}
 		}
-		public void webakKargatu(HashMap<String, WebOrri> mapa){
+		/*
+		public void webakKargatu(){
 			
-			
-			for(Map.Entry<String,GakoHitz> x:this.mapaGako.entrySet()){
+			for(HashMap.Entry<String,GakoHitz> x : mapaGako.entrySet()){
 				String hitza=x.getKey();
 				GakoHitz gakoa=x.getValue();
-				for(Map.Entry<String, WebOrri> y:mapa.entrySet()){
+				for(HashMap.Entry<String, WebOrri> y : WebKatalogoa.getNireWebOrriak().getMapaWebOrriak().entrySet()){
 					String url=y.getKey();
 					WebOrri weba=y.getValue();
 					if(url.contains(hitza)){
 						gakoa.gehituWeba(weba);
+						
 					}
 				}
 			}
-		}
+		}*/
 }

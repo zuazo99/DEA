@@ -68,18 +68,7 @@ public class WebOrri {
 	}
 	
 	
-	/*
-	public void listaKargatu(String nomF){
-		/*try{
-			FileReader fr=new FileReader(nomF);
-			Scanner sc= new Scanner(fr);
-			while(sc.hasNextLine()){ //lortzen dugu fitxategiaren datuak y me dice si hay siguiente linea(Booleano)
-				String linea=sc.nextLine(); //obtengo una linea del fichero
-				
-			}
-		//}
-		//catch(){}*/
-	//}
+
 	
 
 	

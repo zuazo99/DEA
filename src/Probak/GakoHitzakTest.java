@@ -33,9 +33,9 @@ public class GakoHitzakTest {
 	@Test
 	public void testListaKargatu() {
 		gakoHitzak.listaKargatu();
-		GakoHitz gak2=gakoHitzak.bilatuWebOrri("'ll");
+		GakoHitz gak2=gakoHitzak.gakoaItzuli("'ll");
 		assertEquals(gak2.getHitza(),gak.getHitza());
-		GakoHitz gak3=gakoHitzak.bilatuWebOrri("'re");
+		GakoHitz gak3=gakoHitzak.gakoaItzuli("'re");
 		assertEquals(gak3.getHitza(),gak1.getHitza());
 	}
 }

@@ -146,22 +146,6 @@ public class WebKatalogoa { //klase hau EMA,singleton patroia
 	
 	
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 
 	//Fitxategiak tratatzeko metodoak
 	
@@ -173,6 +157,8 @@ public class WebKatalogoa { //klase hau EMA,singleton patroia
 			Scanner sc= new Scanner(new FileReader("index"));
 			String [] StringMoztu=null;
 			WebOrri weborri=null;
+			GakoHitz gako=null;
+			String subString=null;
 			String url=null;
 			String indizea=null;
 			while(sc.hasNext()){
@@ -181,7 +167,9 @@ public class WebKatalogoa { //klase hau EMA,singleton patroia
 				indizea=StringMoztu[1];
 				weborri=new WebOrri(url, Integer.parseInt(indizea));
 				this.gehituWebOrria(weborri);//hasmap-era gehitu
-				this.gehituArrayList(weborri);//arraylist-era gehitu
+				//this.gehituArrayList(weborri);//arraylist-era gehitu
+				this.subStringPosibleak(weborri);
+				
 			}
 			sc.close();
 		}
@@ -193,37 +181,25 @@ public class WebKatalogoa { //klase hau EMA,singleton patroia
 		}
 	}
 	
-	/*
-	public void listaKargatu(String nomF){
-		//aurrebaldintza: fitxategiko datuak string bezala sartuko dira.
-		//postbaldintza: fitxategiko datuak kargatuko dira dagokion datu egituran.
-		try{
-			FileReader fr=new FileReader(nomF);
-			Scanner sc= new Scanner(fr);
-			WebOrri weborri=null;
-			String linea;
-			int i=0;
-			while(sc.hasNextLine()){ //lortzen dugu fitxategiaren datuak y me dice si hay siguiente linea(Booleano)
-				linea=sc.nextLine(); //obtengo una linea del fichero
-				String [] StringMoztu= linea.split(" "); //Lortzen dugu web orriaren bi datuak, bata linka eta indizea.
-				weborri= new WebOrri(); //objetu berrri bat sortzen dugu weborri motatakoa.
-				//diria que en la posicion impares del array(StringMoztu) se guardan los indices y pares los links.
-				weborri.setUrl(StringMoztu[i]);
-				i++;
-				weborri.setIndizea(Integer.parseInt(StringMoztu[i])); //parse lo que hace es convertir un string a int.
-				this.lista.add(weborri);//gehitzen dugu weborri bat ArrayLista-ra
-				//i++;
+	public void subStringPosibleak(WebOrri web){
+		String emaitza=null;
+		GakoHitz gako=null;
+		int buk;
+		for(int has=0;has<web.getUrl().length(); has++){
+			buk=has+3;
+			while(buk<web.getUrl().length()){
+				emaitza=web.getUrl().substring(has, buk);
+				
+				gako=GakoHitzKatalogoa.getNireGakoHitzak().gakoaItzuli(emaitza);
+				if(gako!=null){
+					gako.gehituWeba(web);
+				}
+				buk++;
 			}
-			sc.close();
 		}
-		catch(FileNotFoundException e){
-			System.out.println("Ez da aurkitu fitxategia");
-		}
-		catch(IOException e){
-			e.printStackTrace();
-		}
+		
 	}
-	*/
+	
 	public static int irakurriZenb() throws NumberFormatException {
 		//postbaldintza: zenbaki bat irakurriko du.
 		Scanner sc = new Scanner(System.in);
@@ -248,8 +224,9 @@ public class WebKatalogoa { //klase hau EMA,singleton patroia
 		//postbaldintza: kontsolan kontrol menu bat agertuko da aukerekin.
 		int aukera=1000;
 		boolean irten=false;
-		WebKatalogoa.getNireWebOrriak().listaKargatu();
 		GakoHitzKatalogoa.getNireGakoHitzak().listaKargatu();
+		WebKatalogoa.getNireWebOrriak().listaKargatu();
+		
 
 		while(!irten){
 			//Scanner eskaner = new Scanner(System.in);
@@ -310,7 +287,7 @@ public class WebKatalogoa { //klase hau EMA,singleton patroia
 						}
 					} else if (aukera==5) {
 						//se ejecutarï¿½ el mï¿½todo llamado getGakoWeborrienZerrenda(); (o algo asi) que devolverï¿½ una zerrenda de zerrenda de weborri que contengan el gako hitza introducido
-						GakoHitzKatalogoa.getNireGakoHitzak().webakKargatu(WebKatalogoa.getNireWebOrriak().getMapaWebOrriak());
+						//GakoHitzKatalogoa.getNireGakoHitzak().webakKargatu();
 						System.out.println("Lehenik eta behin idatzi sartu nahi duzun WebOrriaren url-a eta Enter tekla sakatu:\n");
 						Scanner sc = new Scanner(System.in);
 						String s=sc.nextLine();

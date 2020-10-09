@@ -81,6 +81,9 @@ public class WebKatalogoa { //klase hau EMA,singleton patroia
 	
 	
 	public ArrayList<WebOrri> irteerakoEstekak(String s){
+		//aurre:url bat emanda
+		//post:estekatutako WebOrrien zerrenda
+		//bueltatuko du
 		WebOrri web=this.bilatuWebOrri(s);
 		return web.getWeborriLista();
 	}

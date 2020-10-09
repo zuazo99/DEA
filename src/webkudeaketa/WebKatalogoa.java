@@ -181,6 +181,7 @@ public class WebKatalogoa { //klase hau EMA,singleton patroia
 		}
 	}
 	
+	
 	public void subStringPosibleak(WebOrri web){
 		String emaitza=null;
 		GakoHitz gako=null;

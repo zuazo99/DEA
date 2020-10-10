@@ -170,7 +170,7 @@ public class WebKatalogoa { //klase hau EMA,singleton patroia
 				indizea=StringMoztu[1];
 				weborri=new WebOrri(url, Integer.parseInt(indizea));
 				this.gehituWebOrria(weborri);//hasmap-era gehitu
-				//this.gehituArrayList(weborri);//arraylist-era gehitu
+				this.gehituArrayList(weborri);//arraylist-era gehitu
 				this.subStringPosibleak(weborri);
 				
 			}
@@ -298,7 +298,9 @@ public class WebKatalogoa { //klase hau EMA,singleton patroia
 						String s=sc.nextLine();
 						ArrayList<WebOrri> lista=null;
 						lista=GakoHitzKatalogoa.getNireGakoHitzak().word2Webs(s);
-						for(WebOrri x:lista){
+						
+						
+						for(WebOrri x : lista){
 							System.out.println(x.getUrl());
 						}
 					} else if (aukera==6) {

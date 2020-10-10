@@ -9,6 +9,7 @@ public class GakoHitz {
 	
 	public GakoHitz(String pHitza){
 		this.hitza=pHitza;
+		this.lista=new ArrayList<WebOrri>();
 	}
 	
 	

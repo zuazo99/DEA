@@ -97,15 +97,6 @@ public class WebKatalogoa { //klase hau EMA,singleton patroia
 		return weborri;
 	}
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 		//QuickSort algoritmoa, web orriak ordenatzeko
 
 	
@@ -255,7 +246,7 @@ public class WebKatalogoa { //klase hau EMA,singleton patroia
 	}
 	
 	
-	
+	//Nagusia, exekutatuko dena.
 	
 	public static void main(String[] args) {
 		//postbaldintza: kontsolan kontrol menu bat agertuko da aukerekin.
@@ -266,7 +257,7 @@ public class WebKatalogoa { //klase hau EMA,singleton patroia
 		WebKatalogoa.getNireWebOrriak().datuakIrakurriEstekak(); //pId-arcs-1-N
 
 		while(!irten){
-			//Scanner eskaner = new Scanner(System.in);
+			
 			System.out.println("Ongi etorri web kudeaketa aplikaziora.");
 			System.out.println("Zer egin nahi duzu?\n");
 			System.out.println("Aukera hauek dituzu:\n");
@@ -275,8 +266,9 @@ public class WebKatalogoa { //klase hau EMA,singleton patroia
 			System.out.println("3. Web-orri bat ezabatu (3 bat idatzi aukeratzeko)\n ");
 			System.out.println("4. Web-orri bat emanda, estekatutako zerrenda bueltatu (4 bat idatzi aukeratzeko)\n ");
 			System.out.println("5. Gako hitz bat emanda, gako hitza duten web-orrien zerrenda bueltatu (5 bat idatzi aukeratzeko)\n ");
-			System.out.println("6. Web-orrien zerrenda ordenatua lortu (alfabetikoki) (7 bat idatzi aukeratzeko)\n ");
-			//Integer aukera=eskaner.nextInt();
+			System.out.println("6. Web-orrien zerrenda ordenatua lortu (alfabetikoki) (6 bat idatzi aukeratzeko)\n ");
+			System.out.println("7. Web-orrien zerrenda ordenatua lortu eta fitxategitan gorde (7 bat idatzi aukeratzeko)\n ");
+
 			boolean aukeraEgokia=false;
 			while(!aukeraEgokia){
 				aukera=WebKatalogoa.irakurriZenb();
@@ -298,7 +290,7 @@ public class WebKatalogoa { //klase hau EMA,singleton patroia
 						
 						
 					} else if (aukera==2) {
-						System.out.println("Lehenik eta behin idatzi sartu nahi duzun WebOrriaren url-a eta Enter tekla sakatu:\n");
+						System.out.println("Lehenik eta behin idatzi txertatu nahi duzun WebOrriaren url-a eta Enter tekla sakatu:\n");
 						WebOrri webberria= new WebOrri();
 						Scanner eskaner = new Scanner(System.in);
 						webberria.setUrl(eskaner.nextLine());
@@ -309,10 +301,10 @@ public class WebKatalogoa { //klase hau EMA,singleton patroia
 
 					} else if (aukera==3) {
 						//se ejecutarï¿½ el mï¿½todo llamado weborriaEzabatu(); que borrarï¿½ una weborri
+						System.out.println("Lehenik eta behin idatzi ezabatu nahi duzun WebOrriaren url-a eta Enter tekla sakatu:\n");
 						
 					} else if (aukera==4) {
-						//se ejecutarï¿½ el mï¿½todo llamado getEstekatutakoZerrenda(); (o algo asi) que devolverï¿½ una zerrenda de web orri
-						System.out.println("Lehenik eta behin idatzi bilatu nahi duzun WebOrriaren url-a eta Enter tekla sakatu:\n");
+						System.out.println("Lehenik eta behin idatzi WebOrriaren url-a eta Enter tekla sakatu:\n");
 						Scanner sc = new Scanner(System.in);
 						String s=sc.nextLine();
 						ArrayList<WebOrri> lista=null;
@@ -322,9 +314,7 @@ public class WebKatalogoa { //klase hau EMA,singleton patroia
 						}
 						
 					} else if (aukera==5) {
-						//se ejecutarï¿½ el mï¿½todo llamado getGakoWeborrienZerrenda(); (o algo asi) que devolverï¿½ una zerrenda de zerrenda de weborri que contengan el gako hitza introducido
-						//GakoHitzKatalogoa.getNireGakoHitzak().webakKargatu();
-						System.out.println("Lehenik eta behin idatzi sartu nahi duzun WebOrriaren url-a eta Enter tekla sakatu:\n");
+						System.out.println("Lehenik eta behin idatzi sartu gako hitza eta Enter tekla sakatu:\n");
 						Scanner sc = new Scanner(System.in);
 						String s=sc.nextLine();
 						ArrayList<WebOrri> lista=null;
@@ -333,14 +323,17 @@ public class WebKatalogoa { //klase hau EMA,singleton patroia
 							System.out.println(x.getUrl());
 						}
 					} else if (aukera==6) {
-						//se ejecutarï¿½ el mï¿½todo llamado zerrendaOrdenatuaLortu; que devolverï¿½ una lista ordenada de weborri
 						WebOrri[] web=null;
 						web=WebKatalogoa.getNireWebOrriak().ordenatuWebOrriMapa();
 						for(int i=0;i<web.length;i++){
 							System.out.println(web[i].getUrl()+" "+web[i].getIndizea());
-							//i=web[i].
+							
 						}
-					} else {
+					} else if (aukera==7) {
+						//TODO
+					}
+					
+					else {
 						//System.out.println("Ez duzu ondo aukeratu, saiatu berriro;");
 						irten=true;
 					}	

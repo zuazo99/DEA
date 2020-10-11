@@ -56,7 +56,7 @@ public class GakoHitzKatalogoa { //EMA orduan singleton patroia
 	
 	//Fitxategiak tratatzeko metodoak
 	
-		public void listaKargatu(){
+		public void listaKargatuGakoak(){
 			//aurrebaldintza: fitxategiko datuak string bezala sartuko dira.
 			//postbaldintza: fitxategiko datuak kargatuko dira dagokion datu egituran.
 			

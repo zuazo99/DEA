@@ -33,7 +33,7 @@ public class WebOrriakTest {
 
 	@Test
 	public void testListaKargatu() {
-		weborriak.listaKargatu();
+		weborriak.listaKargatuWeb();
 		WebOrri web2=weborriak.bilatuWebOrri("0-00.pl");
 		assertEquals(web2.getUrl(),web.getUrl());
 		WebOrri web3=weborriak.bilatuWebOrri("0-100editions.net");

@@ -32,7 +32,7 @@ public class GakoHitzakTest {
 	
 	@Test
 	public void testListaKargatu() {
-		gakoHitzak.listaKargatu();
+		gakoHitzak.listaKargatuGakoak();
 		GakoHitz gak2=gakoHitzak.gakoaItzuli("'ll");
 		assertEquals(gak2.getHitza(),gak.getHitza());
 		GakoHitz gak3=gakoHitzak.gakoaItzuli("'re");

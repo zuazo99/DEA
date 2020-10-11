@@ -152,7 +152,7 @@ public class WebKatalogoa { //klase hau EMA,singleton patroia
 
 	//Fitxategiak tratatzeko metodoak
 	
-	public void listaKargatu(){
+	public void listaKargatuWeb(){
 		//aurrebaldintza: fitxategiko datuak string bezala sartuko dira.
 		//postbaldintza: fitxategiko datuak kargatuko dira dagokion datu egituran.
 		
@@ -205,7 +205,7 @@ public class WebKatalogoa { //klase hau EMA,singleton patroia
 		}
 		
 	}
-	public void datuakIrakurri(){
+	public void datuakIrakurriEstekak(){
 		try {
 			Scanner sc= new Scanner(new FileReader("pld-arcs-1-N"));
 			WebOrri web,estekaWeb=null;
@@ -261,9 +261,9 @@ public class WebKatalogoa { //klase hau EMA,singleton patroia
 		//postbaldintza: kontsolan kontrol menu bat agertuko da aukerekin.
 		int aukera=1000;
 		boolean irten=false;
-		GakoHitzKatalogoa.getNireGakoHitzak().listaKargatu(); //words.txt
-		WebKatalogoa.getNireWebOrriak().listaKargatu(); //index
-		WebKatalogoa.getNireWebOrriak().datuakIrakurri(); //pId-arcs-1-N
+		GakoHitzKatalogoa.getNireGakoHitzak().listaKargatuGakoak(); //words.txt
+		WebKatalogoa.getNireWebOrriak().listaKargatuWeb(); //index
+		WebKatalogoa.getNireWebOrriak().datuakIrakurriEstekak(); //pId-arcs-1-N
 
 		while(!irten){
 			//Scanner eskaner = new Scanner(System.in);
@@ -306,10 +306,10 @@ public class WebKatalogoa { //klase hau EMA,singleton patroia
 						webberria.setIndizea(WebKatalogoa.getNireWebOrriak().irakurriZenb());
 						getNireWebOrriak().gehituWebOrria(webberria);
 						System.out.println("EGINDA!\n");
-						
-						
+
 					} else if (aukera==3) {
 						//se ejecutarï¿½ el mï¿½todo llamado weborriaEzabatu(); que borrarï¿½ una weborri
+						
 					} else if (aukera==4) {
 						//se ejecutarï¿½ el mï¿½todo llamado getEstekatutakoZerrenda(); (o algo asi) que devolverï¿½ una zerrenda de web orri
 						System.out.println("Lehenik eta behin idatzi bilatu nahi duzun WebOrriaren url-a eta Enter tekla sakatu:\n");
@@ -320,6 +320,7 @@ public class WebKatalogoa { //klase hau EMA,singleton patroia
 						for(WebOrri x : lista){
 							System.out.println(x.getUrl()+" "+ x.getIndizea());
 						}
+						
 					} else if (aukera==5) {
 						//se ejecutarï¿½ el mï¿½todo llamado getGakoWeborrienZerrenda(); (o algo asi) que devolverï¿½ una zerrenda de zerrenda de weborri que contengan el gako hitza introducido
 						//GakoHitzKatalogoa.getNireGakoHitzak().webakKargatu();

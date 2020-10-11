@@ -198,11 +198,43 @@ public class WebKatalogoa { //klase hau EMA,singleton patroia
 				gako=GakoHitzKatalogoa.getNireGakoHitzak().gakoaItzuli(emaitza);
 				if(gako!=null){
 					gako.gehituWeba(web);
+					web.gehituGakoa(gako);
 				}
 				buk++;
 			}
 		}
 		
+	}
+	public void datuakIrakurri(){
+		try {
+			Scanner sc= new Scanner(new FileReader("pld-arcs-1-N"));
+			WebOrri web,estekaWeb=null;
+			String [] moztu=null;
+			String url,url2=null;
+			String indizea,indizea2=null;
+			String [] estekatuta=null;
+			while(sc.hasNext()){
+				moztu=sc.nextLine().split(" -->");
+				indizea=moztu[0];
+				url=this.id2String(Integer.parseInt(indizea));
+				web=this.bilatuWebOrri(url);
+				estekatuta=moztu[1].split(" ");
+				for(int i=0; i < estekatuta.length; i++){
+					indizea2=estekatuta[i];
+					url2=this.id2String(Integer.parseInt(indizea2));
+					estekaWeb=this.bilatuWebOrri(url2);
+					if(estekaWeb!=null){
+						web.gehituWebEstekatua(estekaWeb);
+					}
+					
+				}
+			}
+			sc.close();
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		catch (NumberFormatException ignored){}
 	}
 	
 	public static int irakurriZenb() throws NumberFormatException {
@@ -229,9 +261,9 @@ public class WebKatalogoa { //klase hau EMA,singleton patroia
 		//postbaldintza: kontsolan kontrol menu bat agertuko da aukerekin.
 		int aukera=1000;
 		boolean irten=false;
-		GakoHitzKatalogoa.getNireGakoHitzak().listaKargatu();
-		WebKatalogoa.getNireWebOrriak().listaKargatu();
-		
+		GakoHitzKatalogoa.getNireGakoHitzak().listaKargatu(); //words.txt
+		WebKatalogoa.getNireWebOrriak().listaKargatu(); //index
+		WebKatalogoa.getNireWebOrriak().datuakIrakurri(); //pId-arcs-1-N
 
 		while(!irten){
 			//Scanner eskaner = new Scanner(System.in);
@@ -280,15 +312,13 @@ public class WebKatalogoa { //klase hau EMA,singleton patroia
 						//se ejecutarï¿½ el mï¿½todo llamado weborriaEzabatu(); que borrarï¿½ una weborri
 					} else if (aukera==4) {
 						//se ejecutarï¿½ el mï¿½todo llamado getEstekatutakoZerrenda(); (o algo asi) que devolverï¿½ una zerrenda de web orri
-						System.out.println("Lehenik eta behin idatzi sartu nahi duzun WebOrriaren url-a eta Enter tekla sakatu:\n");
-						
+						System.out.println("Lehenik eta behin idatzi bilatu nahi duzun WebOrriaren url-a eta Enter tekla sakatu:\n");
 						Scanner sc = new Scanner(System.in);
 						String s=sc.nextLine();
-				
 						ArrayList<WebOrri> lista=null;
 						lista=WebKatalogoa.getNireWebOrriak().irteerakoEstekak(s);
-						for(WebOrri x:lista){
-							System.out.println(x.getUrl());
+						for(WebOrri x : lista){
+							System.out.println(x.getUrl()+" "+ x.getIndizea());
 						}
 					} else if (aukera==5) {
 						//se ejecutarï¿½ el mï¿½todo llamado getGakoWeborrienZerrenda(); (o algo asi) que devolverï¿½ una zerrenda de zerrenda de weborri que contengan el gako hitza introducido
@@ -298,8 +328,6 @@ public class WebKatalogoa { //klase hau EMA,singleton patroia
 						String s=sc.nextLine();
 						ArrayList<WebOrri> lista=null;
 						lista=GakoHitzKatalogoa.getNireGakoHitzak().word2Webs(s);
-						
-						
 						for(WebOrri x : lista){
 							System.out.println(x.getUrl());
 						}

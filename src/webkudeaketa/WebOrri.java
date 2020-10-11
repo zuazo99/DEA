@@ -12,13 +12,15 @@ public class WebOrri {
 	private String url; //weborriaren url-a.
 	private Integer indizea; //weborri bakoitzaren url-a.
 	//private HashMap<String,WebOrri> gakoak=new HashMap<String, WebOrri>();//
-	private ArrayList<GakoHitz> gakoa;//gako zerrenda
+	private ArrayList<GakoHitz> listaGakoa;//gako zerrenda
 	private ArrayList<WebOrri> weborriLista;//erlazionatuko weborrien lista
 	
 	public WebOrri(String webUrl, Integer ind) //ERAIKITZAILEAK
 	{
 	this.url=webUrl;
 	this.indizea=ind;
+	this.listaGakoa=new ArrayList<GakoHitz>();
+	this.weborriLista=new ArrayList<WebOrri>();
 	
 	}
 	
@@ -57,6 +59,19 @@ public class WebOrri {
 	public int compareTo(WebOrri lag) {
 		//Bi webeen url-ak konparatzen ditu
 		return this.url.compareTo(lag.getUrl());
+	}
+	
+	
+	public void gehituWebEstekatua(WebOrri web){
+		if(web!=null && !this.weborriLista.contains(web)){
+			this.weborriLista.add(web);
+		}
+	}
+	
+	public void gehituGakoa(GakoHitz gakoa){
+		if(gakoa!=null && !this.listaGakoa.contains(gakoa)){
+			this.listaGakoa.add(gakoa);
+		}
 	}
 
 	public ArrayList<WebOrri> getWeborriLista() {

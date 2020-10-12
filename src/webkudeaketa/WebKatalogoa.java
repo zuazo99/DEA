@@ -345,3 +345,22 @@ public class WebKatalogoa { //klase hau EMA,singleton patroia
 }
 
 public void ezabatuWeb(String pWeb) {int id = this.string2Id(pWeb);Web eWeb = this.webBilatu(pWeb);this.lista.remove(id,eWeb);}
+public void webListaGorde (String pHelb){
+    new File(pHelb);
+    FileWriter fichero = null;
+    PrintWriter pw = null;
+    try
+    {
+        fichero = new FileWriter(pHelb);
+        pw = new PrintWriter(fichero);	    
+        Iterator<Web> itr = this.getWebZerrendaOrdenatua().iterator();
+        Web egungoa;
+        while (itr.hasNext())
+        {
+            egungoa = itr.next();
+            pw.println(egungoa.getIzena());
+        } 
+    } 
+    catch (Exception e) 
+    {
+    }

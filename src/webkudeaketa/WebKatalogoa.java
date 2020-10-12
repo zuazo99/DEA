@@ -1,9 +1,16 @@
 package webkudeaketa;
 
+import java.io.File;
 import java.io.FileNotFoundException;
 
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
+import java.io.PrintWriter;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardOpenOption;
 import java.util.*;
 import java.util.Scanner;
 
@@ -45,6 +52,12 @@ public class WebKatalogoa { //klase hau EMA,singleton patroia
 	public void gehituArrayList(WebOrri web){
 		 this.lista.add(web);
 	}
+	public void ezabatuWeb(String pWeb) {
+		int id = this.string2Id(pWeb);
+		WebOrri eWeb = this.bilatuWebOrri(pWeb);
+		this.lista.remove(id); //arraylist batetik ezabatu
+		this.mapaWebOrriak.remove(pWeb); //hasmapetik ezabatu
+		}
 	
 	public WebOrri[] WebOrriHashMapToArray(HashMap<String, WebOrri> mapa){
 		//aurre: HashMap bat sartuko da parametro bezala.
@@ -245,6 +258,26 @@ public class WebKatalogoa { //klase hau EMA,singleton patroia
 		return zenb;
 	}
 	
+	public void idatziFitxategia(WebOrri[] webak, String helbidea) {
+		//Fitxategia existitzen bada ezabatu egiten du,
+		//eta berria sortzen du
+		Path file = Paths.get(helbidea);
+		try {
+		  Files.deleteIfExists(file);
+		  Files.createFile(file);
+		} catch (IOException e) {
+		  System.err.println("ERROREA fitxategia sortzen");
+		}
+		for(int i = 0; i < webak.length; i++) {
+		  byte[] data = (webak[i].getUrl()+"\n").getBytes();
+		  try {
+			Files.write(file, data, StandardOpenOption.APPEND);
+		  } catch (IOException e) {
+			System.err.println("ERROREA fitxategian idazterakoan");
+		  }
+		}
+	  }
+	
 	
 	//Nagusia, exekutatuko dena.
 	
@@ -302,7 +335,9 @@ public class WebKatalogoa { //klase hau EMA,singleton patroia
 					} else if (aukera==3) {
 						//se ejecutarï¿½ el mï¿½todo llamado weborriaEzabatu(); que borrarï¿½ una weborri
 						System.out.println("Lehenik eta behin idatzi ezabatu nahi duzun WebOrriaren url-a eta Enter tekla sakatu:\n");
-						
+						Scanner sc = new Scanner(System.in);
+						String pWeb=sc.nextLine();
+						WebKatalogoa.getNireWebOrriak().ezabatuWeb(pWeb);
 					} else if (aukera==4) {
 						System.out.println("Lehenik eta behin idatzi WebOrriaren url-a eta Enter tekla sakatu:\n");
 						Scanner sc = new Scanner(System.in);
@@ -330,7 +365,11 @@ public class WebKatalogoa { //klase hau EMA,singleton patroia
 							
 						}
 					} else if (aukera==7) {
-						//TODO
+						System.out.println("Lehenik eta behin idatzi sartu nahi duzun helbidea:\n");
+						Scanner sc = new Scanner(System.in);
+						String s=sc.nextLine();
+						WebOrri [] webLista=WebKatalogoa.getNireWebOrriak().ordenatuWebOrriMapa();
+						WebKatalogoa.getNireWebOrriak().idatziFitxategia(webLista, s);
 					}
 					
 					else {
@@ -344,23 +383,5 @@ public class WebKatalogoa { //klase hau EMA,singleton patroia
 	
 }
 
-public void ezabatuWeb(String pWeb) {int id = this.string2Id(pWeb);Web eWeb = this.webBilatu(pWeb);this.lista.remove(id,eWeb);}
-public void webListaGorde (String pHelb){
-    new File(pHelb);
-    FileWriter fichero = null;
-    PrintWriter pw = null;
-    try
-    {
-        fichero = new FileWriter(pHelb);
-        pw = new PrintWriter(fichero);	    
-        Iterator<Web> itr = this.getWebZerrendaOrdenatua().iterator();
-        Web egungoa;
-        while (itr.hasNext())
-        {
-            egungoa = itr.next();
-            pw.println(egungoa.getIzena());
-        } 
-    } 
-    catch (Exception e) 
-    {
-    }
+	
+

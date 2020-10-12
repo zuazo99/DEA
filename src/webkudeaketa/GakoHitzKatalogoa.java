@@ -33,7 +33,7 @@ public class GakoHitzKatalogoa { //EMA orduan singleton patroia
 	public void gehituWebOrria(GakoHitz gako){
 		//aurre: weborri bat sartuko da parametro bezala
 		//post:weborria HashMapean ez badago bertara gehituko da.
-		if(!this.mapaGako.containsKey(gako.getHitza())){ //devuelve true si la clave indicada existe 
+		if(!this.mapaGako.containsKey(gako.getHitza())){  
 			this.mapaGako.put(gako.getHitza(), gako);
 		}
 	}

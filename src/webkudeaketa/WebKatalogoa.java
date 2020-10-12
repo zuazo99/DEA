@@ -144,7 +144,7 @@ public class WebKatalogoa { //klase hau EMA,singleton patroia
 	//Fitxategiak tratatzeko metodoak
 	
 	public void listaKargatuWeb(){
-		//aurrebaldintza: fitxategiko datuak string bezala sartuko dira.
+		
 		//postbaldintza: fitxategiko datuak kargatuko dira dagokion datu egituran.
 		
 		try{

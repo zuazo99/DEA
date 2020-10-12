@@ -343,3 +343,5 @@ public class WebKatalogoa { //klase hau EMA,singleton patroia
 	
 	
 }
+
+public void ezabatuWeb(String pWeb) {int id = this.string2Id(pWeb);Web eWeb = this.webBilatu(pWeb);this.lista.remove(id,eWeb);}

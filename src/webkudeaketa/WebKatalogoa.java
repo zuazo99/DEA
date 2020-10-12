@@ -278,6 +278,24 @@ public class WebKatalogoa { //klase hau EMA,singleton patroia
 		}
 	  }
 	
+	public void idatziFitxategiaWeb(WebOrri[] webak){
+		FileWriter fichero = null;
+		try {
+
+			fichero = new FileWriter("ordenatuta.txt");
+
+			// Escribimos linea a linea en el fichero
+			for (WebOrri x : webak) {
+				fichero.write(x + "\n");
+			}
+
+			fichero.close();
+
+		} catch (Exception ex) {
+			System.out.println("Mensaje de la excepción: " + ex.getMessage());
+		}
+	}
+	
 	
 	//Nagusia, exekutatuko dena.
 	
@@ -369,7 +387,8 @@ public class WebKatalogoa { //klase hau EMA,singleton patroia
 						Scanner sc = new Scanner(System.in);
 						String s=sc.nextLine();
 						WebOrri [] webLista=WebKatalogoa.getNireWebOrriak().ordenatuWebOrriMapa();
-						WebKatalogoa.getNireWebOrriak().idatziFitxategia(webLista, s);
+						WebKatalogoa.getNireWebOrriak().idatziFitxategia(webLista, s); //Lehenengo aukera
+						WebKatalogoa.getNireWebOrriak().idatziFitxategiaWeb(webLista); //Bigarren aukera
 					}
 					
 					else {

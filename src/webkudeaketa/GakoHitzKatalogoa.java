@@ -1,4 +1,4 @@
-package webkudeaketa;
+package webkudeaketa, webkueaketa2;
 
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -42,8 +42,8 @@ public class GakoHitzKatalogoa { //EMA orduan singleton patroia
 	}
 	
 	public ArrayList<WebOrri> word2Webs(String s){
-		// pre: “s” gako-hitz bat da
-		// post: “s” gako-hitza daukaten web-orriak itzultzen ditu
+		// pre: ï¿½sï¿½ gako-hitz bat da
+		// post: ï¿½sï¿½ gako-hitza daukaten web-orriak itzultzen ditu
 		ArrayList<WebOrri> webLista=null;
 		if(this.mapaGako.containsKey(s)){
 			GakoHitz gako=this.mapaGako.get(s);

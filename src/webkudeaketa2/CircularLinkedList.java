@@ -35,7 +35,8 @@ public class CircularLinkedList<T> implements ListADT<T> {
 		this.count--;
 		return ezabatu;
 	}
-	public T removeLast() {
+	public T removeLast() { //listako azken elementua kendu da
+		
 		
 	}
 	public T remove(T elem) {
@@ -47,8 +48,8 @@ public class CircularLinkedList<T> implements ListADT<T> {
 		lehena=lehena.hurrengoa;
 		return lehena.data;
 	}
-	public T last() {
-		
+	public T last() { //listako azken elementua ematen du
+		return this.last.data;
 	}
 	public boolean contains(T elem) {
 		

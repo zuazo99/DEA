@@ -8,7 +8,7 @@ public class CircularLinkedList<T> implements ListADT<T> {
 	private String deskr;
 	private int count;
 	
-	private CircularLinkedList(String info, int count){//eraikitzailea
+	protected CircularLinkedList(String info, int count){//eraikitzailea
 		
 		this.last=new Node<T>();
 		this.deskr=info;

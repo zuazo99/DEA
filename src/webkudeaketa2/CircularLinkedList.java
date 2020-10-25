@@ -25,7 +25,7 @@ public class CircularLinkedList<T> implements ListADT<T> {
 	public T removeFirst() {
 		T ezabatu = null;
 		if(this.last==this.last.hurrengoa){
-			this.last.hurrengoa=null;
+			this.last=null;
 			ezabatu=this.last.data;
 		}
 		else{
@@ -36,11 +36,62 @@ public class CircularLinkedList<T> implements ListADT<T> {
 		return ezabatu;
 	}
 	public T removeLast() { //listako azken elementua kendu da
+		T ezabatu=this.last.data;
+		Node<T> act,ulti;
+		if(this.last==this.last.hurrengoa){
+			this.last=null;
+			this.count--;
+		}
+		else{
+			act=this.last.hurrengoa;
+			while(act.hurrengoa!=this.last){
+				act=act.hurrengoa;
+			}
+			ulti=act;
+			act.hurrengoa=this.last.hurrengoa;
+			this.last=ulti;
+			this.count--;
+		}
 		
+		return ezabatu;
 		
 	}
 	public T remove(T elem) {
+		Node<T> act,ant;
+		boolean enc=false;
+		T ezabatu=null;
+		if(!this.isEmpty()){
+			act=this.last.hurrengoa;
+			ant=this.last;
 		
+			while(!enc){
+				if(act.data.equals(elem)){
+					ezabatu=act.data;
+					enc=true;
+				}
+				else{
+					ant=act;
+					act=act.hurrengoa;
+				}
+			}
+			if(enc){
+				if(act==this.last){
+					if(ant==act){ //estamos en el primero y hay que borrarlo
+						this.last=null;
+						this.count--;
+					}
+					else{
+						ant.hurrengoa=act.hurrengoa;
+						this.last=ant;
+						this.count--;
+					}
+				}else{
+				ant.hurrengoa=act.hurrengoa;
+				this.count--;
+				}
+			}
+		}
+		return ezabatu;
 	}
 	public T first() {
 		Node<T> lehena;
@@ -49,12 +100,16 @@ public class CircularLinkedList<T> implements ListADT<T> {
 		return lehena.data;
 	}
 	public T last() { //listako azken elementua ematen du
+	
+		
 		return this.last.data;
 	}
-	public boolean contains(T elem) {
+	public boolean contains(T elem) { //Egiazkoa bueltatuko du aurkituz gero, eta false bestela
 		
 	}
-	public T find (T elem) {
+	public T find (T elem) { //Elementua bueltatuko du aurkituz gero, eta null bestela
+		
+		
 		
 	}
 	public boolean isEmpty() {

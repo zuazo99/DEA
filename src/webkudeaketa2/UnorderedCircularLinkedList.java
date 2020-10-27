@@ -5,7 +5,7 @@ import java.util.Iterator;
 public class UnorderedCircularLinkedList<T>  extends CircularLinkedList<T> implements UnorderedListADT<T>{
 	
 
-		private UnoderedCircularLinkedList(String info, int count){
+		private UnorderedCircularLinkedList(String info, int count){
 			super();
 			
 		}

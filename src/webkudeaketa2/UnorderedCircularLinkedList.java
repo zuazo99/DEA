@@ -71,16 +71,35 @@ public class UnorderedCircularLinkedList<T>  extends CircularLinkedList<T> imple
 			return null;
 		}
 
-		public void addToFront(T elem) {
-				Node berria= new Node();
-				berria.data=elem;
-				if (first()==null) {
-					first() = berria;
-					last() = berria;
+		public void addToFront(T elem) { //elementua gehitzen du hasieran
+				
+				Node<T> ulti,leh = null;
+				
+				if (super.isEmpty()) {
+					last = new Node<T>();
+					last.data=elem;
+					last.hurrengoa = last;
+					ulti=last;
+					leh=last;
+				}
+				else if(last.hurrengoa==null){
+					last.hurrengoa=new Node<T>();
+					ulti=last.hurrengoa;
+					leh=last.hurrengoa;
+					ulti.data=elem;
+					ulti.hurrengoa=last;
 				}
 				else{
+					Node<T> berria= new Node<T>();
+					berria.data=elem;
+					berria.hurrengoa=leh;
+					last.hurrengoa=berria;
+					leh=berria;
+				}
+					/*
 					berria.hurrengoa=first();
 					first()=berria;
+					*/
 			}
 			
 		}

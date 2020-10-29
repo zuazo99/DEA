@@ -5,9 +5,9 @@ import java.util.ListIterator;
 
 public class CircularLinkedList<T> implements ListADT<T> {
 //ATRIBUTUAK
-	private Node<T> last;
-	private String deskr;
-	private int count;
+	protected Node<T> last;
+	protected String deskr;
+	protected int count;
 	
 	public CircularLinkedList(String info, int count){//eraikitzailea
 		
@@ -39,7 +39,13 @@ public class CircularLinkedList<T> implements ListADT<T> {
 	public T removeLast() { //listako azken elementua kendu da
 		T ezabatu=this.last.data;
 		Node<T> act,ulti;
-		if(this.last==this.last.hurrengoa){
+		
+		if(this.isEmpty()){
+			return null;
+		}
+		
+		
+		else if(this.last==this.last.hurrengoa){
 			this.last=null;
 			this.count--;
 		}
@@ -94,51 +100,101 @@ public class CircularLinkedList<T> implements ListADT<T> {
 		}
 		return ezabatu;
 	}
-	public T first() {
-		Node<T> lehena;
-		lehena=this.last;
-		lehena=lehena.hurrengoa;
+	public T first() { // listako lehen elementua ematen du
+
+		Node<T> lehena=this.last;
+		if(lehena.hurrengoa==null){
+			lehena.data=null;
+		}
+		else{
+			lehena=lehena.hurrengoa;
+		}
 		return lehena.data;
 	}
 	public T last() { //listako azken elementua ematen du
-	
-		
 		return this.last.data;
 	}
 	public boolean contains(T elem) { //Egiazkoa bueltatuko du aurkituz gero, eta false bestela
-		//TODO
+		boolean aurkituta = false,atera;
+		Node<T> act;
+		if(!this.isEmpty()){ //hutsa ez bada
+			act=this.last.hurrengoa;
+			atera=false;
+			while(!aurkituta && !atera){
+				if(act==this.last){ //estamos en el primero y este el elemento o no hay que salir del bucle
+					if(act.data.equals(elem)){
+						aurkituta=true;
+					}
+					else{
+						atera=true;
+					}
+				}else if(act.data.equals(elem)){ //erdiko nodo batean gaude 
+					aurkituta=true;
+				}else{
+					act=act.hurrengoa;
+				}
+				
+			}
+		}
+		return aurkituta;
 	}
+	
 	public T find (T elem) { //Elementua bueltatuko du aurkituz gero, eta null bestela
-		
-		
+		Node<T> act;
+		boolean aurkituta=false,atera;
+		T emaitza=null;
+		if(!this.isEmpty()){ //hutsa ez bada
+			act=this.last.hurrengoa;
+			atera=false;
+			while(!aurkituta && !atera){ //(!act.data.equals(elem))
+				if(act==this.last){ //estamos en el primero y este el elemento o no hay que salir del bucle
+					if(act.data.equals(elem)){
+						aurkituta=true;
+						emaitza=act.data;
+					}
+					else{
+						atera=true;
+					}
+				}else if(act.data.equals(elem)){ //erdiko nodo batean gaude 
+					aurkituta=true;
+					emaitza=act.data;
+				}else{
+					act=act.hurrengoa;
+				}
+			}
+		}
+		return emaitza;
 		
 	}
 	public boolean isEmpty() {
 		boolean hutsa=false;
-		if(this.last.hurrengoa==null){
+		if(this.last==null){
 			hutsa=true;
 		}
 		
 		return hutsa;
 	}
-	public int size() {
-		int kopurua=0;
-		
-		
-		
-		
-		return kopurua;
+	public int size() {	
+		return this.count;
 	}
-	public Iterator<T> iterator(){
-		return new ListIterator<T>() {
-			@Override
-			public boolean hasNext() {
-				return false;
+	public Iterator<T> iterator() { return new ListIterator(); } 
+	
+	public class ListIterator implements Iterator<T>{
+	
+		private Node<T> current;
+		private Node<T> lastNode = last;
+		private int index = 0;
+	
+		@Override
+		public boolean hasNext() {
+				return index < count ;
 			}
-
-			@Override
+		@Override
 			public T next() {
-				return null;
+				T data=current.data;
+				current=current.hurrengoa;
+				index++;
+				return data;
 			}
 
 			@Override
@@ -176,5 +232,6 @@ public class CircularLinkedList<T> implements ListADT<T> {
 
 			}
 		};
-	}
+	
 }
+

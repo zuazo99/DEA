@@ -6,8 +6,8 @@ public class UnorderedCircularLinkedList<T>  extends CircularLinkedList<T> imple
 	
 
 		private UnorderedCircularLinkedList(String info, int count){
-			super();
-			
+			super(info, count);
+
 		}
 		public void setDescr(String izena) {
 			// TODO Auto-generated method stub
@@ -72,12 +72,36 @@ public class UnorderedCircularLinkedList<T>  extends CircularLinkedList<T> imple
 		}
 
 		public void addToFront(T elem) {
-			// TODO Auto-generated method stub
+				Node berria= new Node();
+				berria.data=elem;
+				if (first()==null) {
+					first() = berria;
+					last() = berria;
+				}
+				else{
+					berria.hurrengoa=first();
+					first()=berria;
+			}
 			
 		}
 
 		public void addToRear(T elem) {
 			// TODO Auto-generated method stub
+			if (isEmpty()){
+				addToFront(elem);
+			}
+			else{
+				Node aux = first();
+				while( aux != null){
+					aux=aux.hurrengoa;
+
+				}
+				Node berria = new Node();
+				berria.data = elem;
+				aux.hurrengoa=berria;
+			}
+
+
 			
 		}
 

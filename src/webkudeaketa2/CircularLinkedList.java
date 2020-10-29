@@ -1,6 +1,7 @@
 package webkudeaketa2;
 
 import java.util.Iterator;
+import java.util.ListIterator;
 
 public class CircularLinkedList<T> implements ListADT<T> {
 //ATRIBUTUAK
@@ -15,7 +16,7 @@ public class CircularLinkedList<T> implements ListADT<T> {
 		this.count=count;
 		
 	}
-	
+
 	public void setDescr(String izena) {
 		this.deskr=izena;
 	}
@@ -105,7 +106,7 @@ public class CircularLinkedList<T> implements ListADT<T> {
 		return this.last.data;
 	}
 	public boolean contains(T elem) { //Egiazkoa bueltatuko du aurkituz gero, eta false bestela
-		
+		//TODO
 	}
 	public T find (T elem) { //Elementua bueltatuko du aurkituz gero, eta null bestela
 		
@@ -129,6 +130,51 @@ public class CircularLinkedList<T> implements ListADT<T> {
 		return kopurua;
 	}
 	public Iterator<T> iterator(){
-		
+		return new ListIterator<T>() {
+			@Override
+			public boolean hasNext() {
+				return false;
+			}
+
+			@Override
+			public T next() {
+				return null;
+			}
+
+			@Override
+			public boolean hasPrevious() {
+				return false;
+			}
+
+			@Override
+			public T previous() {
+				return null;
+			}
+
+			@Override
+			public int nextIndex() {
+				return 0;
+			}
+
+			@Override
+			public int previousIndex() {
+				return 0;
+			}
+
+			@Override
+			public void remove() {
+
+			}
+
+			@Override
+			public void set(T t) {
+
+			}
+
+			@Override
+			public void add(T t) {
+
+			}
+		};
 	}
 }

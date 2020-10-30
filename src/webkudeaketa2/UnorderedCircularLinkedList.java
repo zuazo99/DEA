@@ -10,7 +10,7 @@ public class UnorderedCircularLinkedList<T>  extends CircularLinkedList<T> imple
 
 		}
 		public void setDescr(String izena) {
-			// TODO Auto-generated method stub
+			
 			
 		}
 
@@ -124,8 +124,22 @@ public class UnorderedCircularLinkedList<T>  extends CircularLinkedList<T> imple
 			
 		}
 
-		public void addAfter(T elem, T target) {
+		public void addAfter(T elem, T target){ // elementua gehitzen du target elementuaren ondoren (target zerrendan dago)
 			// TODO Auto-generated method stub
-			
+			Node<T> act=this.last.hurrengoa;
+			boolean aurkituta=false;
+			while(act!=this.last && !aurkituta){
+				if(act.data.equals(target)){
+					aurkituta=true;
+				}else{
+					act=act.hurrengoa;
+				}
+			}
+			if(aurkituta){
+				Node<T> berria=new Node();
+				berria.data=elem;
+				berria.hurrengoa=act.hurrengoa;
+				act.hurrengoa=berria;
+			}
 		}
 }

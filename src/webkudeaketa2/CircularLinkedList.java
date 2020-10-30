@@ -185,11 +185,12 @@ public class CircularLinkedList<T> implements ListADT<T> {
 		private Node<T> lastNode = last;
 		private int index = 0;
 	
-		@Override
-		public boolean hasNext() {
+			@Override
+			public boolean hasNext() {
 				return index < count ;
 			}
-		@Override
+			
+			@Override
 			public T next() {
 				T data=current.data;
 				current=current.hurrengoa;

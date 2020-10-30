@@ -5,7 +5,7 @@ public class Node<T> {
 	Node<T> hurrengoa;
 	
 	public Node(T pData){
-		this.data= pData;
+		this.data = pData;
 	}
 	
 }

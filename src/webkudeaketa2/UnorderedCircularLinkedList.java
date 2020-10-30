@@ -9,68 +9,6 @@ public class UnorderedCircularLinkedList<T>  extends CircularLinkedList<T> imple
 			super(info, count, null);
 
 		}
-		public void setDescr(String izena) {
-			
-			
-		}
-
-		public String getDescr() {
-			// TODO Auto-generated method stub
-			String nombre="jon";//proba bat
-			
-			return null;
-		}
-
-		public T removeFirst() {
-			// TODO Auto-generated method stub
-			return null;
-		}
-
-		public T removeLast() {
-			// TODO Auto-generated method stub
-			return null;
-		}
-
-		public T remove(T elem) {
-			// TODO Auto-generated method stub
-			return null;
-		}
-
-		public T first() {
-			// TODO Auto-generated method stub
-			return null;
-		}
-
-		public T last() {
-			// TODO Auto-generated method stub
-			return null;
-		}
-
-		public boolean contains(T elem) {
-			// TODO Auto-generated method stub
-			return false;
-		}
-
-		public T find(T elem) {
-			// TODO Auto-generated method stub
-			return null;
-		}
-
-		public boolean isEmpty() {
-			// TODO Auto-generated method stub
-			return false;
-		}
-
-		public int size() {
-			// TODO Auto-generated method stub
-			return 0;
-		}
-
-		public Iterator<T> iterator() {
-			// TODO Auto-generated method stub
-			return null;
-		}
-
 		public void addToFront(T elem) { //elementua gehitzen du hasieran
 				
 				Node<T> ulti,leh = null;

@@ -11,7 +11,7 @@ public class CircularLinkedList<T> implements ListADT<T> {
 	
 	public CircularLinkedList(String info, int count,T elem){//eraikitzailea
 		
-		this.last=new Node<T>(elem);
+		this.last=new Node<T>(elem); 
 		this.deskr=info;
 		this.count=count;
 		
@@ -179,18 +179,17 @@ public class CircularLinkedList<T> implements ListADT<T> {
 	}
 	public Iterator<T> iterator() { return new ListIterator(); } 
 	
-	public class ListIterator implements Iterator<T>{
+	private class ListIterator implements Iterator<T>{
 	
-		private Node<T> current;
+		private Node<T> current = last.hurrengoa ;
 		private Node<T> lastNode = last;
 		private int index = 0;
 	
-			@Override
 			public boolean hasNext() {
 				return index < count ;
 			}
 			
-			@Override
+			
 			public T next() {
 				T data=current.data;
 				current=current.hurrengoa;
@@ -198,41 +197,11 @@ public class CircularLinkedList<T> implements ListADT<T> {
 				return data;
 			}
 
-			@Override
-			public boolean hasPrevious() {
-				return false;
-			}
 
-			@Override
-			public T previous() {
-				return null;
-			}
+			
 
-			@Override
-			public int nextIndex() {
-				return 0;
-			}
-
-			@Override
-			public int previousIndex() {
-				return 0;
-			}
-
-			@Override
-			public void remove() {
-
-			}
-
-			@Override
-			public void set(T t) {
-
-			}
-
-			@Override
-			public void add(T t) {
-
-			}
-		};
+			
+		}
 	
 }
 

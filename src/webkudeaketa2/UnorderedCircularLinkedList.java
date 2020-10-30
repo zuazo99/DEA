@@ -102,7 +102,7 @@ public class UnorderedCircularLinkedList<T>  extends CircularLinkedList<T> imple
 					*/
 			}
 			
-		}
+
 
 		public void addToRear(T elem) {
 			// TODO Auto-generated method stub
@@ -110,7 +110,7 @@ public class UnorderedCircularLinkedList<T>  extends CircularLinkedList<T> imple
 				addToFront(elem);
 			}
 			else{
-				Node aux = first();
+				Node aux = last.hurrengoa;
 				while( aux != null){
 					aux=aux.hurrengoa;
 

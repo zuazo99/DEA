@@ -1,4 +1,4 @@
-package webkudeaketa, webkueaketa2;
+package webkudeaketa;
 
 import java.io.FileNotFoundException;
 import java.io.FileReader;

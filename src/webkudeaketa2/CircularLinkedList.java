@@ -181,17 +181,27 @@ public class CircularLinkedList<T> implements ListADT<T> {
 	
 	private class ListIterator implements Iterator<T>{
 	
-		private Node<T> current = last.hurrengoa ;
-		private Node<T> lastNode = last;
+		private Node<T> current;
+		private boolean berrizBisitatu;
 		private int index = 0;
+			public ListIterator(){
+				if(!isEmpty()){
+					current=last.hurrengoa;
+					berrizBisitatu=true;
+				}
+			}
 	
 			public boolean hasNext() {
-				return index < count ;
+				if(isEmpty() || (current==last.hurrengoa && !berrizBisitatu)){
+					return false;
+				}
+					return true;			
 			}
 			
 			
 			public T next() {
 				T data=current.data;
+				berrizBisitatu=false;
 				current=current.hurrengoa;
 				index++;
 				return data;

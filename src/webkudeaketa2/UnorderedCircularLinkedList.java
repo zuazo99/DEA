@@ -13,7 +13,6 @@ public class UnorderedCircularLinkedList<T>  extends CircularLinkedList<T> imple
 				
 				if (super.isEmpty()) {
 					last = new Node<T>(elem);
-					//last.data=elem;
 					last.hurrengoa = last;
 					ulti=last;
 					leh=last;
@@ -32,10 +31,6 @@ public class UnorderedCircularLinkedList<T>  extends CircularLinkedList<T> imple
 					last.hurrengoa=berria;
 					leh=berria;
 				}
-					/*
-					berria.hurrengoa=first();
-					first()=berria;
-					*/
 			}
 			
 

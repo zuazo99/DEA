@@ -66,7 +66,7 @@ public class UnorderedCircularLinkedList<T>  extends CircularLinkedList<T> imple
 				}
 			}
 			if(aurkituta){
-				Node<T> berria=new Node(elem);
+				Node<T> berria=new Node<T>(elem);
 				if(act==this.last){
 					berria.hurrengoa=act.hurrengoa;
 					act.hurrengoa=berria;

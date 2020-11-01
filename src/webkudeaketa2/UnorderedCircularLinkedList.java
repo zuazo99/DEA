@@ -1,11 +1,9 @@
 package webkudeaketa2;
 
-import java.util.Iterator;
-
 public class UnorderedCircularLinkedList<T>  extends CircularLinkedList<T> implements UnorderedListADT<T>{
-	
 
-		private UnorderedCircularLinkedList(String info, int count){
+
+		public UnorderedCircularLinkedList(String info, int count){
 			super(info, count, null);
 
 		}

@@ -1,28 +1,31 @@
 package webkudeaketa;
 
-import java.io.File;
-import java.io.FileNotFoundException;
+import webkudeaketa2.UnorderedCircularLinkedList;
 
+import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Iterator;
 import java.util.Scanner;
 
 public class WebKatalogoa { //klase hau EMA,singleton patroia
 	//atributuak
-	private ArrayList<WebOrri> lista;
+	private UnorderedCircularLinkedList<WebOrri> lista;
 	private static WebKatalogoa nireWebOrriak=null;
 	private HashMap<String,WebOrri> mapaWebOrriak=new HashMap<String, WebOrri>();//la busqueda por url de key utilizamos la url 
 		
 	//eraikitzaileak
 	private WebKatalogoa(){
-		this.lista=new ArrayList<WebOrri>();
+		String info;
+		int count;
+		this.lista=new UnorderedCircularLinkedList<WebOrri>(info, count);
 		this.mapaWebOrriak=new HashMap<String, WebOrri>();
 		
 	}
@@ -31,6 +34,9 @@ public class WebKatalogoa { //klase hau EMA,singleton patroia
 			nireWebOrriak=new WebKatalogoa();
 		}
 		return nireWebOrriak;
+	}
+	private Iterator<WebOrri> getNireIteradorea(){//no se si hay que hacerlo, lo he hecho por si acaso
+		return this.lista.iterator();
 	}
 	public HashMap<String, WebOrri> getMapaWebOrriak() {
 		return mapaWebOrriak;
@@ -45,10 +51,11 @@ public class WebKatalogoa { //klase hau EMA,singleton patroia
 	public void gehituWebOrria(WebOrri web){
 		//aurre: weborri bat sartuko da parametro bezala
 		//post:weborria HashMapean ez badago bertara gehituko da.
-		if(!this.mapaWebOrriak.containsKey(web.getUrl())){
-			this.mapaWebOrriak.put(web.getUrl(), web);
+		//if(!this.mapaWebOrriak.containsKey(web.getUrl())){
+			//this.mapaWebOrriak.put(web.getUrl(), web);
+		this.lista.addToRear(web);
 		}
-	}
+
 	public void gehituArrayList(WebOrri web){
 		 this.lista.add(web);
 	}

@@ -101,15 +101,19 @@ public class CircularLinkedList<T> implements ListADT<T> {
 		return ezabatu;
 	}
 	public T first() { // listako lehen elementua ematen du
-
-		Node<T> lehena=this.last;
-		if(lehena.hurrengoa==null){
-			lehena.data=null;
+		T emaitza=null;
+		Node<T> lehena;
+		if(!isEmpty()){
+			lehena=this.last;
+			if(lehena.hurrengoa==this.last){
+				emaitza=last.data;
+			}
+			else{
+				lehena=lehena.hurrengoa;
+				emaitza=lehena.data;
+			}
 		}
-		else{
-			lehena=lehena.hurrengoa;
-		}
-		return lehena.data;
+		return emaitza;
 	}
 	public T last() { //listako azken elementua ematen du
 		return this.last.data;

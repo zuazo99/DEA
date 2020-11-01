@@ -3,8 +3,8 @@ package webkudeaketa2;
 public class UnorderedCircularLinkedList<T>  extends CircularLinkedList<T> implements UnorderedListADT<T>{
 
 
-		public UnorderedCircularLinkedList(String info, int count){
-			super(info, count, null);
+		public UnorderedCircularLinkedList(String info, int count, T elem){
+			super(info, count, elem);
 
 		}
 		public void addToFront(T elem) { //elementua gehitzen du hasieran

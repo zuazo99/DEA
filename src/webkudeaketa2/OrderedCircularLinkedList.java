@@ -15,6 +15,7 @@ public class OrderedCircularLinkedList<T extends Comparable<T>> extends Circular
 		if(isEmpty()){ //lista hutsa badago
 			last=berria;
 			berria.hurrengoa=last;
+			count++;
 		}else{
 			act=last.hurrengoa;
 			ant=null;
@@ -38,14 +39,17 @@ public class OrderedCircularLinkedList<T extends Comparable<T>> extends Circular
 					berria.hurrengoa=act;
 					last.hurrengoa=berria;
 					last=berria;
+					count++;
 					
 				}else if(act==last.hurrengoa){
 					berria.hurrengoa=last.hurrengoa;
 					last.hurrengoa=berria;
+					count++;
 				}
 				else{
 					berria.hurrengoa=act;
 					ant.hurrengoa=berria;
+					count++;
 					
 				}
 			}
@@ -96,8 +100,19 @@ public class OrderedCircularLinkedList<T extends Comparable<T>> extends Circular
 		}
 	}
 
-	@Override
-	public void merge(OrderedCircularLinkedList<T> z) {
-
+	
+	public void merge(OrderedCircularLinkedList<T> z) { 
+		// parametro bidezko zerrendako elementuak gehitu dira zerrendara. (O(n) metodoa izan behar du)
+		boolean begiratuta=false;
+		if(!z.isEmpty()){
+			Node<T> unekoaBigarrenLista = z.last;
+			this.add2(unekoaBigarrenLista.data);
+			unekoaBigarrenLista=unekoaBigarrenLista.hurrengoa;
+			while(unekoaBigarrenLista!=z.last){
+				this.add2(unekoaBigarrenLista.data);
+				unekoaBigarrenLista=unekoaBigarrenLista.hurrengoa;
+			}
+		}
+		
 	}
 }

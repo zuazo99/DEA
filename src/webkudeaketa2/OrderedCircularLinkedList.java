@@ -7,8 +7,51 @@ public class OrderedCircularLinkedList<T extends Comparable<T>> extends Circular
 		// TODO Auto-generated constructor stub
 	}
 
-
-	@Override
+	public void add2(T elem){
+		boolean atera = false,aurkituta = false,begiratuta=false;
+		Node<T> act,ant;
+		Node<T> berria=new Node<T>(elem);
+		
+		if(isEmpty()){ //lista hutsa badago
+			last=berria;
+			berria.hurrengoa=last;
+		}else{
+			act=last.hurrengoa;
+			ant=null;
+			while(!(atera || aurkituta || begiratuta)){
+				if(act.data.compareTo(elem)>0){
+					atera=true;
+				}
+				else if(act.data.compareTo(elem)==0){
+					aurkituta=true;
+				}
+				else if(act==last){
+					begiratuta=true;
+				}
+				else{
+					ant=act;
+					act=act.hurrengoa;
+				}
+			}
+			if(!aurkituta){
+				if(begiratuta && act.data.compareTo(elem)<0 ){
+					berria.hurrengoa=act;
+					last.hurrengoa=berria;
+					last=berria;
+					
+				}else if(act==last.hurrengoa){
+					berria.hurrengoa=last.hurrengoa;
+					last.hurrengoa=berria;
+				}
+				else{
+					berria.hurrengoa=act;
+					ant.hurrengoa=berria;
+					
+				}
+			}
+		}
+	}
+	
 	public void add(T elem) {
 		Node<T> berria = new Node<T>(elem);
 		boolean lehena =false;

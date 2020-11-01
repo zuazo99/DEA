@@ -61,7 +61,9 @@ public class UnorderedCircularLinkedList<T>  extends CircularLinkedList<T> imple
 			// TODO Auto-generated method stub
 			Node<T> act=this.last.hurrengoa;
 			boolean aurkituta=false;
-			while(act!=this.last && !aurkituta){
+			boolean begiratuta=false;
+			while(!((act==this.last.hurrengoa && begiratuta) || aurkituta)){
+				begiratuta=true;
 				if(act.data.equals(target)){
 					aurkituta=true;
 				}else{
@@ -70,9 +72,14 @@ public class UnorderedCircularLinkedList<T>  extends CircularLinkedList<T> imple
 			}
 			if(aurkituta){
 				Node<T> berria=new Node(elem);
-				//berria.data=elem;
+				if(act==this.last){
+					berria.hurrengoa=act.hurrengoa;
+					act.hurrengoa=berria;
+					last=berria;
+				}else{
 				berria.hurrengoa=act.hurrengoa;
 				act.hurrengoa=berria;
+				}
 			}
 		}
 }

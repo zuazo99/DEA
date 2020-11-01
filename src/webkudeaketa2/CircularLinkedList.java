@@ -107,6 +107,8 @@ public class CircularLinkedList<T> implements ListADT<T> {
 			lehena=this.last;
 			if(lehena.hurrengoa==this.last){
 				emaitza=last.data;
+			}else if(this.last.hurrengoa==null){
+				emaitza=this.last.data;
 			}
 			else{
 				lehena=lehena.hurrengoa;

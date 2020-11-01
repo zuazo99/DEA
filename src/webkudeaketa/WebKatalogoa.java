@@ -17,16 +17,18 @@ import java.util.Scanner;
 
 public class WebKatalogoa { //klase hau EMA,singleton patroia
 	//atributuak
-	private UnorderedCircularLinkedList<WebOrri> lista;
+	private ArrayList<WebOrri> lista;
+	private UnorderedCircularLinkedList<WebOrri> zerrenda;
 	private static WebKatalogoa nireWebOrriak=null;
 	private HashMap<String,WebOrri> mapaWebOrriak=new HashMap<String, WebOrri>();//la busqueda por url de key utilizamos la url 
 		
 	//eraikitzaileak
 	private WebKatalogoa(){
-		String info;
-		int count;
-		this.lista=new UnorderedCircularLinkedList<WebOrri>(info, count);
+		String info = null;
+		int count = 0;
+		this.zerrenda=new UnorderedCircularLinkedList<WebOrri>(info, count, null);
 		this.mapaWebOrriak=new HashMap<String, WebOrri>();
+		this.lista=new ArrayList<WebOrri>();
 		
 	}
 	public static synchronized WebKatalogoa getNireWebOrriak(){
@@ -51,10 +53,14 @@ public class WebKatalogoa { //klase hau EMA,singleton patroia
 	public void gehituWebOrria(WebOrri web){
 		//aurre: weborri bat sartuko da parametro bezala
 		//post:weborria HashMapean ez badago bertara gehituko da.
-		//if(!this.mapaWebOrriak.containsKey(web.getUrl())){
-			//this.mapaWebOrriak.put(web.getUrl(), web);
-		this.lista.addToRear(web);
+		if(!this.mapaWebOrriak.containsKey(web.getUrl())){
+			this.mapaWebOrriak.put(web.getUrl(), web);
+		//this.lista.addToRear(web);
 		}
+	}
+	public void gehituWebOrriakUnorderedCircularLinkedList(WebOrri web){
+		this.zerrenda.addToFront(web);
+	}
 
 	public void gehituArrayList(WebOrri web){
 		 this.lista.add(web);
@@ -182,6 +188,7 @@ public class WebKatalogoa { //klase hau EMA,singleton patroia
 				weborri=new WebOrri(url, Integer.parseInt(indizea));
 				this.gehituWebOrria(weborri);//hasmap-era gehitu
 				this.gehituArrayList(weborri);//arraylist-era gehitu
+				this.gehituWebOrriakUnorderedCircularLinkedList(weborri);//UnorderedLinkedList-era gehitu
 				this.subStringPosibleak(weborri);
 				
 			}

@@ -51,7 +51,16 @@ public class GakoHitzKatalogoa { //EMA orduan singleton patroia
 		}
 		return webLista;
 	}
-	
+	public ArrayList<WebOrri> word2WebsUnordered(String s){
+		// pre: �s� gako-hitz bat da
+		// post: �s� gako-hitza daukaten web-orriak itzultzen ditu
+		ArrayList<WebOrri> webLista=null;
+		if(this.mapaGako.containsKey(s)){
+			GakoHitz gako=this.mapaGako.get(s);
+			webLista=gako.getLista();
+		}
+		return webLista;
+	}
 	
 	
 	//Fitxategiak tratatzeko metodoak

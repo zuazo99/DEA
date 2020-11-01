@@ -16,6 +16,7 @@ public class UnorderedCircularLinkedList<T>  extends CircularLinkedList<T> imple
 					last.hurrengoa = last;
 					ulti=last;
 					leh=last;
+					count++;
 				}
 				else if(last.hurrengoa==null){
 					last.hurrengoa=new Node<T>(elem);
@@ -23,6 +24,7 @@ public class UnorderedCircularLinkedList<T>  extends CircularLinkedList<T> imple
 					leh=last.hurrengoa;
 					//ulti.data=elem;
 					ulti.hurrengoa=last;
+					count++;
 				}
 				else{
 					Node<T> berria= new Node<T>(elem);
@@ -30,6 +32,7 @@ public class UnorderedCircularLinkedList<T>  extends CircularLinkedList<T> imple
 					berria.hurrengoa=leh;
 					last.hurrengoa=berria;
 					leh=berria;
+					count++;
 				}
 			}
 			

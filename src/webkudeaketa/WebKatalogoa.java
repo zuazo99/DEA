@@ -36,7 +36,7 @@ public class WebKatalogoa { //klase hau EMA,singleton patroia
 		}
 		return nireWebOrriak;
 	}
-	private Iterator<WebOrri> getNireIteradorea(){//no se si hay que hacerlo, lo he hecho por si acaso
+	private Iterator<WebOrri> getNireIteradorea(){//badaezpada
 		return this.lista.iterator();
 	}
 	public HashMap<String, WebOrri> getMapaWebOrriak() {

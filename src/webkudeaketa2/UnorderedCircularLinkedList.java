@@ -1,5 +1,9 @@
 package webkudeaketa2;
 
+import java.util.Iterator;
+
+import webkudeaketa.WebOrri;
+
 public class UnorderedCircularLinkedList<T>  extends CircularLinkedList<T> implements UnorderedListADT<T>{
 
 
@@ -17,6 +21,9 @@ public class UnorderedCircularLinkedList<T>  extends CircularLinkedList<T> imple
 					ulti=last;
 					leh=last;
 					count++;
+				}else if(last.data==null){
+					last.data=elem;
+					count=1;
 				}
 				else if(last.hurrengoa==null){
 					last.hurrengoa=new Node<T>(elem);
@@ -26,6 +33,7 @@ public class UnorderedCircularLinkedList<T>  extends CircularLinkedList<T> imple
 					ulti.hurrengoa=last;
 					count++;
 				}
+				
 				else{
 					Node<T> berria= new Node<T>(elem);
 					//berria.data=elem;
@@ -35,9 +43,8 @@ public class UnorderedCircularLinkedList<T>  extends CircularLinkedList<T> imple
 					count++;
 				}
 			}
-			
-
-
+		
+		
 		public void addToRear(T elem) { //azkenengo posizioan gehitu elementua
 			// TODO Auto-generated method stub
 			if (super.isEmpty()){

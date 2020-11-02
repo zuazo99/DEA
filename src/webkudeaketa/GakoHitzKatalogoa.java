@@ -5,6 +5,8 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.*;
 
+import webkudeaketa2.UnorderedCircularLinkedList;
+
 public class GakoHitzKatalogoa { //EMA orduan singleton patroia
 	//atributuak
 	private ArrayList<GakoHitz> listagako;
@@ -51,15 +53,17 @@ public class GakoHitzKatalogoa { //EMA orduan singleton patroia
 		}
 		return webLista;
 	}
-	public ArrayList<WebOrri> word2WebsUnordered(String s){
+	public UnorderedCircularLinkedList<WebOrri> word2WebsUnordered(String s){
 		// pre: �s� gako-hitz bat da
 		// post: �s� gako-hitza daukaten web-orriak itzultzen ditu
-		ArrayList<WebOrri> webLista=null;
+
+		UnorderedCircularLinkedList<WebOrri> zerrenda = null;
 		if(this.mapaGako.containsKey(s)){
 			GakoHitz gako=this.mapaGako.get(s);
-			webLista=gako.getLista();
+			zerrenda=gako.getZerrenda();
+			
 		}
-		return webLista;
+		return zerrenda;
 	}
 	
 	

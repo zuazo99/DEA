@@ -1,5 +1,6 @@
 package webkudeaketa;
 
+import webkudeaketa2.Node;
 import webkudeaketa2.UnorderedCircularLinkedList;
 
 import java.io.FileNotFoundException;
@@ -24,9 +25,7 @@ public class WebKatalogoa { //klase hau EMA,singleton patroia
 		
 	//eraikitzaileak
 	private WebKatalogoa(){
-		String info = null;
-		int count = 0;
-		this.zerrenda=new UnorderedCircularLinkedList<WebOrri>(info, count, null);
+		this.zerrenda=new UnorderedCircularLinkedList<WebOrri>(null, 0, null);
 		this.mapaWebOrriak=new HashMap<String, WebOrri>();
 		this.lista=new ArrayList<WebOrri>();
 		
@@ -61,7 +60,6 @@ public class WebKatalogoa { //klase hau EMA,singleton patroia
 	public void gehituWebOrriakUnorderedCircularLinkedList(WebOrri web){
 		this.zerrenda.addToFront(web);
 	}
-
 	public void gehituArrayList(WebOrri web){
 		 this.lista.add(web);
 	}
@@ -188,7 +186,6 @@ public class WebKatalogoa { //klase hau EMA,singleton patroia
 				weborri=new WebOrri(url, Integer.parseInt(indizea));
 				this.gehituWebOrria(weborri);//hasmap-era gehitu
 				this.gehituArrayList(weborri);//arraylist-era gehitu
-				this.gehituWebOrriakUnorderedCircularLinkedList(weborri);//UnorderedLinkedList-era gehitu
 				this.subStringPosibleak(weborri);
 				
 			}
@@ -216,6 +213,7 @@ public class WebKatalogoa { //klase hau EMA,singleton patroia
 				gako=GakoHitzKatalogoa.getNireGakoHitzak().gakoaItzuli(emaitza);
 				if(gako!=null){
 					gako.gehituWeba(web);
+					gako.gehituWebaUnorderedLinkedList(web);
 					web.gehituGakoa(gako);
 				}
 				buk++;
@@ -320,7 +318,7 @@ public class WebKatalogoa { //klase hau EMA,singleton patroia
 		GakoHitzKatalogoa.getNireGakoHitzak().listaKargatuGakoak(); //words.txt
 		WebKatalogoa.getNireWebOrriak().listaKargatuWeb(); //index
 		WebKatalogoa.getNireWebOrriak().datuakIrakurriEstekak(); //pId-arcs-1-N
-
+		
 		while(!irten){
 			
 			System.out.println("Ongi etorri web kudeaketa aplikaziora.");
@@ -384,11 +382,14 @@ public class WebKatalogoa { //klase hau EMA,singleton patroia
 						System.out.println("Lehenik eta behin idatzi sartu gako hitza eta Enter tekla sakatu:\n");
 						Scanner sc = new Scanner(System.in);
 						String s=sc.nextLine();
-						ArrayList<WebOrri> lista=null;
-						lista=GakoHitzKatalogoa.getNireGakoHitzak().word2Webs(s);
-						for(WebOrri x : lista){
-							System.out.println(x.getUrl());
-						}
+						//ArrayList<WebOrri> lista=null;
+						//lista=GakoHitzKatalogoa.getNireGakoHitzak().word2Webs(s);
+						//for(WebOrri x : lista){
+							//System.out.println(x.getUrl());
+						UnorderedCircularLinkedList<WebOrri> zerrenda=new UnorderedCircularLinkedList<WebOrri>(null, 0, null);
+						zerrenda=GakoHitzKatalogoa.getNireGakoHitzak().word2WebsUnordered(s);
+						System.out.println(zerrenda.size() +" weborri kopurua daude "+s+" gakoarekin");
+						
 					} else if (aukera==6) {
 						WebOrri[] web=null;
 						web=WebKatalogoa.getNireWebOrriak().ordenatuWebOrriMapa();

@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Scanner;
 import java.util.ArrayList;
-
+import webkudeaketa2.UnorderedCircularLinkedList;
 public class WebOrri {
 	
 	private String url; //weborriaren url-a.

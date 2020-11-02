@@ -16,7 +16,9 @@ public class CircularLinkedList<T> implements ListADT<T> {
 		this.count=count;
 		
 	}
-
+	public Node<T> getLast(){
+		return this.last;
+	}
 	public void setDescr(String izena) {
 		this.deskr=izena;
 	}
@@ -191,16 +193,16 @@ public class CircularLinkedList<T> implements ListADT<T> {
 		private boolean berrizBisitatu;
 		private int index = 0;
 			public ListIterator(){
-				if(!isEmpty()){
 					current=last.hurrengoa;
 					berrizBisitatu=true;
-				}
+				
 			}
 	
 			public boolean hasNext() {
 				if(isEmpty() || (current==last.hurrengoa && !berrizBisitatu)){
 					return false;
 				}
+				else if(current ==null){return false;}
 					return true;			
 			}
 			

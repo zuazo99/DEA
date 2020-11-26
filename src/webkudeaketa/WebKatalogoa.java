@@ -60,8 +60,8 @@ public class WebKatalogoa { //klase hau EMA,singleton patroia
 	public void gehituWebOrriakUnorderedCircularLinkedList(WebOrri web){
 		this.zerrenda.addToFront(web);
 	}
-	public void gehituArrayList(WebOrri web){
-		 this.lista.add(web);
+	public void gehituArrayList(int x,WebOrri web){
+		 this.lista.add(x,web);
 	}
 	public void ezabatuWeb(String pWeb) {
 		int id = this.string2Id(pWeb);
@@ -108,8 +108,13 @@ public class WebKatalogoa { //klase hau EMA,singleton patroia
 		//aurre:url bat emanda
 		//post:estekatutako WebOrrien zerrenda
 		//bueltatuko du
-		WebOrri web=this.bilatuWebOrri(s);
-		return web.getWeborriLista();
+		if(this.mapaWebOrriak.containsKey(s) || s.equals(null)){
+			WebOrri web=this.bilatuWebOrri(s);
+			return web.getWeborriLista();
+		}else{
+			System.out.println("Ez dago izen hori duen Web orririk");
+		}
+		return null;
 	}
 	
 	public WebOrri[] ordenatuWebOrriMapa(){
@@ -185,7 +190,7 @@ public class WebKatalogoa { //klase hau EMA,singleton patroia
 				indizea=StringMoztu[1];
 				weborri=new WebOrri(url, Integer.parseInt(indizea));
 				this.gehituWebOrria(weborri);//hasmap-era gehitu
-				this.gehituArrayList(weborri);//arraylist-era gehitu
+				this.gehituArrayList(weborri.getIndizea(),weborri);//arraylist-era gehitu
 				this.subStringPosibleak(weborri);
 				
 			}
@@ -222,35 +227,45 @@ public class WebKatalogoa { //klase hau EMA,singleton patroia
 		
 	}
 	public void datuakIrakurriEstekak(){
+		String url,url2=null;
+		int kont=0;
 		try {
 			Scanner sc= new Scanner(new FileReader("pld-arcs-1-N"));
 			WebOrri web,estekaWeb=null;
-			String [] moztu=null;
-			String url,url2=null;
+			String [] moztu;
+			
 			String indizea,indizea2=null;
-			String [] estekatuta=null;
+			
+			int i;
 			while(sc.hasNext()){
-				moztu=sc.nextLine().split(" -->");
-				indizea=moztu[0];
-				url=this.id2String(Integer.parseInt(indizea));
-				web=this.bilatuWebOrri(url);
-				estekatuta=moztu[1].split(" ");
-				for(int i=0; i < estekatuta.length; i++){
-					indizea2=estekatuta[i];
-					url2=this.id2String(Integer.parseInt(indizea2));
-					estekaWeb=this.bilatuWebOrri(url2);
-					if(estekaWeb!=null){
-						web.gehituWebEstekatua(estekaWeb);
-					}
-					
+				moztu=sc.nextLine().split("\\s+-->");
+				String [] estekatuta=null;
+				if(moztu.length>=2){
+					estekatuta=moztu[1].split("\\s");
 				}
+				
+				url=this.id2String(Integer.parseInt(moztu[0]));
+				
+				web=this.bilatuWebOrri(url);
+				
+				if(estekatuta!=null){
+					i=1;
+					while(i<estekatuta.length){
+						web.gehituWebEstekatua(this.bilatuWebOrri(id2String(Integer.parseInt(estekatuta[i]))));
+						i++;
+					}
+				}else{
+					System.out.println("Ez dago inolako url honekin konektatuta :(");
+					kont++;
+				}
+				
 			}
+			System.out.println(kont+"url daude inorekin konektatuta");
 			sc.close();
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		catch (NumberFormatException ignored){}
 	}
 	
 	public static int irakurriZenb() throws NumberFormatException {
@@ -318,6 +333,12 @@ public class WebKatalogoa { //klase hau EMA,singleton patroia
 		GakoHitzKatalogoa.getNireGakoHitzak().listaKargatuGakoak(); //words.txt
 		WebKatalogoa.getNireWebOrriak().listaKargatuWeb(); //index
 		WebKatalogoa.getNireWebOrriak().datuakIrakurriEstekak(); //pId-arcs-1-N
+		System.out.println("");
+		System.out.println("");
+		System.out.println("");
+		System.out.println("");
+		System.out.println(WebKatalogoa.getNireWebOrriak().lista.size()+" weborri ezberdin daude");
+		System.out.println("Lista hau "+ WebKatalogoa.getNireWebOrriak().zerrenda.getClass().getName() + " da");
 		
 		while(!irten){
 			
@@ -330,8 +351,13 @@ public class WebKatalogoa { //klase hau EMA,singleton patroia
 			System.out.println("4. Web-orri bat emanda, estekatutako zerrenda bueltatu (4 bat idatzi aukeratzeko)\n ");
 			System.out.println("5. Gako hitz bat emanda, gako hitza duten web-orrien zerrenda bueltatu (5 bat idatzi aukeratzeko)\n ");
 			System.out.println("6. Web-orrien zerrenda ordenatua lortu (alfabetikoki) (6 bat idatzi aukeratzeko)\n ");
-			System.out.println("7. Web-orrien zerrenda ordenatua lortu eta fitxategitan gorde (7 bat idatzi aukeratzeko)\n ");
+			System.out.println("7. Web-orrien zerrenda ordenatua lortu (alfabetikoki) (6 bat idatzi aukeratzeko)\n ");
 
+			System.out.println("8. Grafoa sortu (8 bat idatzi aukeratzeko)\n ");
+			System.out.println("");
+			System.out.println("");
+			System.out.println("");
+			System.out.println("");
 			boolean aukeraEgokia=false;
 			while(!aukeraEgokia){
 				aukera=WebKatalogoa.irakurriZenb();
@@ -372,23 +398,34 @@ public class WebKatalogoa { //klase hau EMA,singleton patroia
 						System.out.println("Lehenik eta behin idatzi WebOrriaren url-a eta Enter tekla sakatu:\n");
 						Scanner sc = new Scanner(System.in);
 						String s=sc.nextLine();
+						System.out.println("");
+						System.out.println("");
 						ArrayList<WebOrri> lista=null;
-						lista=WebKatalogoa.getNireWebOrriak().irteerakoEstekak(s);
+						
+							lista=WebKatalogoa.getNireWebOrriak().irteerakoEstekak(s);
+							Iterator<WebOrri> itr=lista.iterator();
+							while(itr.hasNext()){
+								WebOrri web=itr.next();
+								System.out.println(web.getUrl());
+							}
+						
+						/*
 						for(WebOrri x : lista){
 							System.out.println(x.getUrl()+" "+ x.getIndizea());
 						}
-						
+						*/
 					} else if (aukera==5) {
 						System.out.println("Lehenik eta behin idatzi sartu gako hitza eta Enter tekla sakatu:\n");
 						Scanner sc = new Scanner(System.in);
 						String s=sc.nextLine();
-						//ArrayList<WebOrri> lista=null;
-						//lista=GakoHitzKatalogoa.getNireGakoHitzak().word2Webs(s);
-						//for(WebOrri x : lista){
-							//System.out.println(x.getUrl());
-						UnorderedCircularLinkedList<WebOrri> zerrenda=new UnorderedCircularLinkedList<WebOrri>(null, 0, null);
-						zerrenda=GakoHitzKatalogoa.getNireGakoHitzak().word2WebsUnordered(s);
-						System.out.println(zerrenda.size() +" weborri kopurua daude "+s+" gakoarekin");
+						ArrayList<WebOrri> lista=null;
+						lista=GakoHitzKatalogoa.getNireGakoHitzak().word2Webs(s);
+						for(WebOrri x : lista){
+							System.out.println(x.getUrl());
+						}
+						//UnorderedCircularLinkedList<WebOrri> zerrenda=new UnorderedCircularLinkedList<WebOrri>(null, 0, null);
+						//zerrenda=GakoHitzKatalogoa.getNireGakoHitzak().word2WebsUnordered(s);
+						//System.out.println(zerrenda.size() +" weborri kopurua daude "+s+" gakoarekin");
 						
 					} else if (aukera==6) {
 						WebOrri[] web=null;

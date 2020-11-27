@@ -17,6 +17,9 @@ public class GakoHitz {
 	}
 	
 	
+	public void gehituWebaUnorderedLinkedList(WebOrri web){
+		this.zerrenda.addToFront(web);
+	}
 	
 	public String getHitza() {
 		return hitza;
@@ -35,9 +38,6 @@ public class GakoHitz {
 		if(web!=null && !this.lista.contains(web)){
 			this.lista.add(web);
 		}
-	}
-	public void gehituWebaUnorderedLinkedList(WebOrri web){
-		this.zerrenda.addToFront(web);
 	}
 	public UnorderedCircularLinkedList<WebOrri> getZerrenda(){
 		return zerrenda;

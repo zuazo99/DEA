@@ -4,6 +4,7 @@ import java.io.FileReader;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.Scanner;
 import java.util.ArrayList;
 import webkudeaketa2.UnorderedCircularLinkedList;
@@ -11,7 +12,6 @@ public class WebOrri {
 	
 	private String url; //weborriaren url-a.
 	private Integer indizea; //weborri bakoitzaren url-a.
-	//private HashMap<String,WebOrri> gakoak=new HashMap<String, WebOrri>();//
 	private ArrayList<GakoHitz> listaGakoa;//gako zerrenda
 	private ArrayList<WebOrri> weborriLista;//erlazionatuko weborrien lista
 	
@@ -65,6 +65,13 @@ public class WebOrri {
 	public void gehituWebEstekatua(WebOrri web){
 		if(web!=null && !this.weborriLista.contains(web)){
 			this.weborriLista.add(web);
+		}
+	}
+	public void webEstekatuakPrinteatu(){
+		Iterator<WebOrri> itr=this.weborriLista.iterator();
+		while(itr.hasNext()){
+			WebOrri web=itr.next();
+			System.out.println(web.getUrl());
 		}
 	}
 	

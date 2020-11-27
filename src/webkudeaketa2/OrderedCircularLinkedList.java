@@ -7,7 +7,7 @@ public class OrderedCircularLinkedList<T extends Comparable<T>> extends Circular
 		// TODO Auto-generated constructor stub
 	}
 
-	public void add2(T elem){
+	public void add(T elem){
 		boolean atera = false,aurkituta = false,begiratuta=false;
 		Node<T> act,ant;
 		Node<T> berria=new Node<T>(elem);
@@ -56,49 +56,7 @@ public class OrderedCircularLinkedList<T extends Comparable<T>> extends Circular
 		}
 	}
 	
-	public void add(T elem) {
-		Node<T> berria = new Node<T>(elem);
-		boolean lehena =false;
-		boolean irten =false;
-		boolean posbai =false;
-		//hiru boolear, lehena pasatu den jakiteko
-		//hau da, bukle infinitoa ez egiteko, irten, elem jada istan badago, listan ez sartzeko,
-		//eta posbai, elem-ren posizioa aurkitzean aktibatuko dena.
-		if (last.hurrengoa==null){//kasu basikoa, lista hutsa
-			count++;
-			last.hurrengoa=new Node<T>(elem);
-			last.hurrengoa.hurrengoa=last.hurrengoa; //hau da, lehenaren hurrengoa-->lehena
 
-		}else{
-			Node<T> unekoa = last.hurrengoa;
-			while(!posbai && !lehena && !irten){
-				if(unekoa.data.compareTo(elem)>0){//elem ez dago listan eta sartuko dugu
-					count++;
-					if (unekoa==last.hurrengoa){//unekoa lehena bada
-						berria.hurrengoa=last.hurrengoa;
-						last.hurrengoa.hurrengoa=berria;
-						last.hurrengoa=berria;
-					}else{//elem erdian txertatzeko
-						berria.hurrengoa=unekoa;
-						unekoa.hurrengoa=berria.hurrengoa.hurrengoa;
-					}
-					posbai=true;
-				}else{
-					if (unekoa.data.equals(elem)){
-						irten=true;
-					}else {
-						unekoa=unekoa.hurrengoa;
-					}if (unekoa==last.hurrengoa){
-						lehena=true;
-					}
-
-				}if (lehena){//amaieran
-					berria.hurrengoa=unekoa;
-					unekoa.hurrengoa=last.hurrengoa;
-				}
-			}
-		}
-	}
 
 	
 	public void merge(OrderedCircularLinkedList<T> z) { 
@@ -106,10 +64,10 @@ public class OrderedCircularLinkedList<T extends Comparable<T>> extends Circular
 		boolean begiratuta=false;
 		if(!z.isEmpty()){
 			Node<T> unekoaBigarrenLista = z.last;
-			this.add2(unekoaBigarrenLista.data);
+			this.add(unekoaBigarrenLista.data);
 			unekoaBigarrenLista=unekoaBigarrenLista.hurrengoa;
 			while(unekoaBigarrenLista!=z.last){
-				this.add2(unekoaBigarrenLista.data);
+				this.add(unekoaBigarrenLista.data);
 				unekoaBigarrenLista=unekoaBigarrenLista.hurrengoa;
 			}
 		}

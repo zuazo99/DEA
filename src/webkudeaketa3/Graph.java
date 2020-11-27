@@ -2,6 +2,9 @@ package webkudeaketa3;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
+import java.util.LinkedList;
+import java.util.Queue;
 
 import webkudeaketa.WebKatalogoa;
 import webkudeaketa.WebOrri;
@@ -33,10 +36,17 @@ public class Graph {
 			// 3. pausua: “adjList” bete            
 			// KODEA INPLEMENTATU
 			adjList= new ArrayList[th.size()];
-			for (int i = 0; i < adjList.length; i++) {
-				adjList[i]=web.getWeborriLista();
+			
+			//for (int indizea=web.getIndizea(); indizea < adjList.length; indizea++) {
+				int indizea=web.getIndizea();
+				Iterator<WebOrri> itr=web.getWeborriLista().iterator();
 				
-			}
+					while(itr.hasNext()){
+						WebOrri weba=itr.next();
+						adjList[indizea].add(weba.getIndizea());
+					}
+
+			//}
 		}
             
            
@@ -70,8 +80,20 @@ public class Graph {
 		int pos2 = th.get(a2);
 		boolean aurkitua = false;
 		boolean[] aztertuak = new boolean[th.size()];
-
-                 // KODEA INPLEMENTATU    
+		Iterator<Integer> itr=adjList[pos1].iterator();
+		while(itr.hasNext()){
+			int zbk=itr.next();
+			aztertuGabeak.add(zbk);
+			aztertuak[zbk]=true;
+		}
+		
+         while(!(aztertuGabeak.isEmpty()|| aurkitua)){
+        	 if(aztertuak[pos2]){
+        		 aurkitua=true;
+        	 }else{
+        		 
+        	 }
+         } 
 		
 		return aurkitua;
 

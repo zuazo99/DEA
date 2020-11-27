@@ -398,6 +398,7 @@ public class WebKatalogoa { //klase hau EMA,singleton patroia
 						System.out.println("Lehenik eta behin idatzi WebOrriaren url-a eta Enter tekla sakatu:\n");
 						Scanner sc = new Scanner(System.in);
 						String s=sc.nextLine();
+						
 						System.out.println("");
 						System.out.println("");
 						ArrayList<WebOrri> lista=null;

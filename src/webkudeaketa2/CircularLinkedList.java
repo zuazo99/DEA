@@ -85,7 +85,7 @@ public class CircularLinkedList<T> implements ListADT<T> {
 			}
 			if(enc){
 				if(act==this.last){
-					if(ant==act){ //estamos en el primero y hay que borrarlo
+					if(ant==act){ 
 						this.last=null;
 						this.count--;
 					}
@@ -129,7 +129,7 @@ public class CircularLinkedList<T> implements ListADT<T> {
 			act=this.last.hurrengoa;
 			atera=false;
 			while(!aurkituta && !atera){
-				if(act==this.last){ //estamos en el primero y este el elemento o no hay que salir del bucle
+				if(act==this.last){ 
 					if(act.data.equals(elem)){
 						aurkituta=true;
 					}
@@ -154,8 +154,8 @@ public class CircularLinkedList<T> implements ListADT<T> {
 		if(!this.isEmpty()){ //hutsa ez bada
 			act=this.last.hurrengoa;
 			atera=false;
-			while(!aurkituta && !atera){ //(!act.data.equals(elem))
-				if(act==this.last){ //estamos en el primero y este el elemento o no hay que salir del bucle
+			while(!aurkituta && !atera){ 
+				if(act==this.last){ 
 					if(act.data.equals(elem)){
 						aurkituta=true;
 						emaitza=act.data;

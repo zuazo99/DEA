@@ -80,22 +80,38 @@ public class Graph {
 		int pos2 = th.get(a2);
 		boolean aurkitua = false;
 		boolean[] aztertuak = new boolean[th.size()];
+		
+		aztertuGabeak.add(pos1);
+		aztertuak[pos1]=true;
+		
+		 while(!(aztertuGabeak.isEmpty()|| aurkitua)){
+        	 int unekoa=aztertuGabeak.remove();
+			 if(unekoa==pos2){
+        		 aurkitua=true;
+        	 }else{
+        		 Iterator<Integer> itr=adjList[unekoa].iterator();
+        		 while(itr.hasNext()){
+        			 int zbk=itr.next();
+        			 if(!aztertuak[zbk]){
+        				 aztertuGabeak.add(zbk);
+        				 aztertuak[zbk]=true;
+        			 }
+        		 }
+        		 
+        	 }
+         }
+		 return aurkitua;
+		
+		
+		/*
 		Iterator<Integer> itr=adjList[pos1].iterator();
 		while(itr.hasNext()){
 			int zbk=itr.next();
 			aztertuGabeak.add(zbk);
 			aztertuak[zbk]=true;
 		}
-		
-         while(!(aztertuGabeak.isEmpty()|| aurkitua)){
-        	 if(aztertuak[pos2]){
-        		 aurkitua=true;
-        	 }else{
-        		 
-        	 }
-         } 
-		
-		return aurkitua;
+		*/
+        
 
 	}
 }

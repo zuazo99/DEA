@@ -2,6 +2,7 @@ package webkudeaketa;
 
 import webkudeaketa2.Node;
 import webkudeaketa2.UnorderedCircularLinkedList;
+import webkudeaketa3.Graph;
 
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -22,6 +23,7 @@ public class WebKatalogoa { //klase hau EMA,singleton patroia
 	private UnorderedCircularLinkedList<WebOrri> zerrenda;
 	private static WebKatalogoa nireWebOrriak=null;
 	private HashMap<String,WebOrri> mapaWebOrriak=new HashMap<String, WebOrri>();//la busqueda por url de key utilizamos la url 
+	
 		
 	//eraikitzaileak
 	private WebKatalogoa(){
@@ -42,6 +44,10 @@ public class WebKatalogoa { //klase hau EMA,singleton patroia
 	public HashMap<String, WebOrri> getMapaWebOrriak() {
 		return mapaWebOrriak;
 	}
+	public ArrayList<WebOrri> getLista(){
+		return lista;
+	}
+	
 	
 	public WebOrri bilatuWebOrri(String url){
 		//aurre: String motako url-a sartuko da
@@ -361,7 +367,7 @@ public class WebKatalogoa { //klase hau EMA,singleton patroia
 			boolean aukeraEgokia=false;
 			while(!aukeraEgokia){
 				aukera=WebKatalogoa.irakurriZenb();
-				if(aukera>=1 && aukera<=6){
+				if(aukera>=1 && aukera<=8){
 					aukeraEgokia=true;
 				}
 				else{
@@ -442,6 +448,10 @@ public class WebKatalogoa { //klase hau EMA,singleton patroia
 						WebOrri [] webLista=WebKatalogoa.getNireWebOrriak().ordenatuWebOrriMapa();
 						WebKatalogoa.getNireWebOrriak().idatziFitxategia(webLista, s); //Lehenengo aukera
 						WebKatalogoa.getNireWebOrriak().idatziFitxategiaWeb(webLista); //Bigarren aukera
+					}else if(aukera==8){
+						System.out.println("Grafoa sortuko da");
+						Graph grafoa = new Graph();
+						grafoa.grafoaSortu(WebKatalogoa.getNireWebOrriak().getLista());
 					}
 					
 					else {

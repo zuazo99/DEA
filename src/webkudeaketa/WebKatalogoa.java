@@ -339,6 +339,7 @@ public class WebKatalogoa { //klase hau EMA,singleton patroia
 		GakoHitzKatalogoa.getNireGakoHitzak().listaKargatuGakoak(); //words.txt
 		WebKatalogoa.getNireWebOrriak().listaKargatuWeb(); //index
 		WebKatalogoa.getNireWebOrriak().datuakIrakurriEstekak(); //pId-arcs-1-N
+		Graph grafoa = new Graph();
 		System.out.println("");
 		System.out.println("");
 		System.out.println("");
@@ -360,18 +361,18 @@ public class WebKatalogoa { //klase hau EMA,singleton patroia
 			System.out.println("7. Web-orrien zerrenda ordenatua lortu (alfabetikoki) (6 bat idatzi aukeratzeko)\n ");
 
 			System.out.println("8. Grafoa sortu (8 bat idatzi aukeratzeko)\n ");
-			System.out.println("");
-			System.out.println("");
+			System.out.println("9.Grafoa inprimatu");
+			System.out.println("10.Graph erlazionatuta metodoa");
 			System.out.println("");
 			System.out.println("");
 			boolean aukeraEgokia=false;
 			while(!aukeraEgokia){
 				aukera=WebKatalogoa.irakurriZenb();
-				if(aukera>=1 && aukera<=8){
+				if(aukera>=1 && aukera<=10){
 					aukeraEgokia=true;
 				}
 				else{
-					System.out.println("Aukeratu 1-etik 6-rako zenbaki bat");
+					System.out.println("Aukeratu 1-etik 9-rako zenbaki bat");
 				}
 			}
 					
@@ -450,13 +451,20 @@ public class WebKatalogoa { //klase hau EMA,singleton patroia
 						WebKatalogoa.getNireWebOrriak().idatziFitxategiaWeb(webLista); //Bigarren aukera
 					}else if(aukera==8){
 						System.out.println("Grafoa sortuko da");
-						Graph grafoa = new Graph();
+						
 						grafoa.grafoaSortu(WebKatalogoa.getNireWebOrriak().getLista());
-						boolean ondo=grafoa.erlazionatuta("0-gros-seins.com", "0-casino.info");
-						if(ondo){System.out.println("ONDO!!!!");}
-						else{
-							System.out.println("MAAAL");
-						}
+						
+					}else if(aukera==9){
+						grafoa.print();
+					}else if(aukera==10){
+						System.out.println("Sartu nahi duzun url-a,root moduan arituko duena");
+						Scanner sc = new Scanner(System.in);
+						String url1=sc.nextLine();
+						System.out.println("Sartu helburu moduan nahi duzun url-a");
+						String url2=sc.nextLine();
+						boolean ondo=grafoa.erlazionatuta(url1, url2);
+						if(ondo)System.out.println("ONDOOOO!!!!");
+						else System.out.println("MAAAAAAAAAAAAAAL!!!");
 					}
 					
 					else {

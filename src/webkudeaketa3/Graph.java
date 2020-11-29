@@ -41,30 +41,21 @@ public class Graph {
 			System.out.println(web.getUrl());
 			 // 2. pausua: “keys” bete			
 			
-			//for (String k: th.keySet()) 
 			keys[th.get(web.getUrl())] = web.getUrl();
 			
 			// 3. pausua: “adjList” bete            
 			// KODEA INPLEMENTATU
 			
-			//for (int indizea=web.getIndizea(); indizea < adjList.length; indizea++) {
-
-				int indizea=web.getIndizea();
-				ArrayList<WebOrri> listaEstekatua=web.getWeborriLista();
-				if(listaEstekatua!=null){
-					Iterator<WebOrri> itr=listaEstekatua.iterator();
+			int indizea=web.getIndizea();
+			ArrayList<WebOrri> listaEstekatua=web.getWeborriLista();
+			if(listaEstekatua!=null){
+				Iterator<WebOrri> itr=listaEstekatua.iterator();
 				
-					while(itr.hasNext()){
-						WebOrri weba=itr.next();
-						adjList[indizea].add(weba.getIndizea());
-					}
+				while(itr.hasNext()){
+					WebOrri weba=itr.next();
+					adjList[indizea].add(weba.getIndizea());
 				}
-				/*
-				for(int i=0; i<adjList.length;i++)
-					for(int j=0;j<listaEstekatua.size();j++){
-						System.out.println(adjList[i].get(j));
-				}*/
-			//}
+			}
 		}
 		System.out.println(adjList[9].get(2));
 		

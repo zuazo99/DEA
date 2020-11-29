@@ -452,6 +452,11 @@ public class WebKatalogoa { //klase hau EMA,singleton patroia
 						System.out.println("Grafoa sortuko da");
 						Graph grafoa = new Graph();
 						grafoa.grafoaSortu(WebKatalogoa.getNireWebOrriak().getLista());
+						boolean ondo=grafoa.erlazionatuta("0-gros-seins.com", "0-casino.info");
+						if(ondo){System.out.println("ONDO!!!!");}
+						else{
+							System.out.println("MAAAL");
+						}
 					}
 					
 					else {

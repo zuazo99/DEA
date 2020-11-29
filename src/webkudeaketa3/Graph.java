@@ -24,25 +24,28 @@ public class Graph {
 		//       Nodoak web-en url-ak dira
 		this.th=new HashMap<String, Integer>();
   	  	this.adjList= new ArrayList[lista.size()];
-  	  
-		for (WebOrri web : lista) {
+  	  	this.keys = new String[lista.size()];
+  	//hasieratzeko
+		for (int i = 0; i < lista.size(); i++) {
+			this.adjList[i]=new ArrayList<Integer>();
+		}
+		//for (WebOrri web : lista) {
+		
+		Iterator<WebOrri> iterar=lista.iterator();
+		while(iterar.hasNext()){
+			
+			WebOrri web=iterar.next();
 			 // 1. pausua:  “th” bete            
 			// KODEA INPLEMENTATU
 			gehituWebOrria(web);
-			
+			System.out.println(web.getUrl());
 			 // 2. pausua: “keys” bete			
-			keys = new String[th.size()];
-			for (String k: th.keySet()) 
-				keys[th.get(k)] = k;
+			
+			//for (String k: th.keySet()) 
+			keys[th.get(web.getUrl())] = web.getUrl();
 			
 			// 3. pausua: “adjList” bete            
 			// KODEA INPLEMENTATU
-			
-			//hasieratzeko
-			for (int i = 0; i < lista.size(); i++) {
-				this.adjList[i]=new ArrayList<Integer>();
-				
-			}
 			
 			//for (int indizea=web.getIndizea(); indizea < adjList.length; indizea++) {
 
@@ -56,8 +59,15 @@ public class Graph {
 						adjList[indizea].add(weba.getIndizea());
 					}
 				}
+				/*
+				for(int i=0; i<adjList.length;i++)
+					for(int j=0;j<listaEstekatua.size();j++){
+						System.out.println(adjList[i].get(j));
+				}*/
 			//}
-		}     
+		}
+		System.out.println(adjList[9].get(2));
+		
 	}
 	
 	//th HashMap-era gehitzeko datuak.

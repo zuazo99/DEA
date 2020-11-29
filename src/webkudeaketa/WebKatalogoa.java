@@ -363,12 +363,12 @@ public class WebKatalogoa { //klase hau EMA,singleton patroia
 			System.out.println("8. Grafoa sortu (8 bat idatzi aukeratzeko)\n ");
 			System.out.println("9.Grafoa inprimatu");
 			System.out.println("10.Graph erlazionatuta metodoa");
-			System.out.println("");
+			System.out.println("11.Graph elarzionatutaBidea metodoa");
 			System.out.println("");
 			boolean aukeraEgokia=false;
 			while(!aukeraEgokia){
 				aukera=WebKatalogoa.irakurriZenb();
-				if(aukera>=1 && aukera<=10){
+				if(aukera>=1 && aukera<=11){
 					aukeraEgokia=true;
 				}
 				else{
@@ -462,9 +462,25 @@ public class WebKatalogoa { //klase hau EMA,singleton patroia
 						String url1=sc.nextLine();
 						System.out.println("Sartu helburu moduan nahi duzun url-a");
 						String url2=sc.nextLine();
+						
 						boolean ondo=grafoa.erlazionatuta(url1, url2);
 						if(ondo)System.out.println("ONDOOOO!!!!");
 						else System.out.println("MAAAAAAAAAAAAAAL!!!");
+					}else if(aukera==11){
+						System.out.println("Sartu nahi duzun url-a,root moduan arituko duena");
+						Scanner sc = new Scanner(System.in);
+						String url1=sc.nextLine();
+						System.out.println("Sartu helburu moduan nahi duzun url-a");
+						String url2=sc.nextLine();
+						
+						ArrayList<String> emaitza=grafoa.erlazionatutaBidea(url1, url2);
+						if(emaitza.size()<=1){
+							System.out.println("Ez daude aukeratutako url-ak haien artean erlazionatuta");
+						}else{
+							for (int i = 0; i < emaitza.size(); i++) {
+								System.out.println(i+":"+emaitza.get(i));
+							}
+						}
 					}
 					
 					else {

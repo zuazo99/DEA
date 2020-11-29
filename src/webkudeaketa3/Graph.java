@@ -1,6 +1,8 @@
 package webkudeaketa3;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.*;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.LinkedList;
@@ -110,14 +112,18 @@ public class Graph {
 	}
 	
 	public ArrayList<String> erlazionatutaBidea(String a1, String a2){
-		ArrayList<String> bidea=new ArrayList<String>();
+		//ArrayList<String> bidea=new ArrayList<String>();
 		ArrayList<String> emaitza=new ArrayList<String>();
+		String[] bidea =new String[th.size()];
 		Queue<Integer> aztertuGabeak = new LinkedList<Integer>();
+		
+		//ArrayList<String> proba=new ArrayList<String>(Arrays.asList(bideak));
+		
 		int pos1 = th.get(a1);
 		int pos2 = th.get(a2);
 		boolean aurkitua = false;
 		boolean[] aztertuak = new boolean[th.size()];
-		
+		//System.out.println(bidea.size());
 		aztertuGabeak.add(pos1);
 		aztertuak[pos1]=true;
 
@@ -129,10 +135,11 @@ public class Graph {
         		 Iterator<Integer> itr=adjList[unekoa].iterator();
         		 while(itr.hasNext()){
         			 int zbk=itr.next();
+        			 //System.out.println(zbk);
         			 if(!aztertuak[zbk]){
         				 aztertuGabeak.add(zbk);
         				 String url=keys[unekoa];
-        				 bidea.add(zbk,url );
+        				 bidea[zbk]=url;
         				 aztertuak[zbk]=true;
         			 }
         		 }
@@ -151,7 +158,7 @@ public class Graph {
 			 emaitza.add(a2);
 			 while(!bukatuta){
 				if(i!=pos1){
-					 String hitza=bidea.get(i);
+					 String hitza=bidea[i];
 					 emaitza.add(hitza);
 					 i=th.get(hitza);
 				}else{

@@ -453,7 +453,7 @@ public class WebKatalogoa { //klase hau EMA,singleton patroia
 						System.out.println("Grafoa sortuko da");
 						
 						grafoa.grafoaSortu(WebKatalogoa.getNireWebOrriak().getLista());
-						
+						grafoa.probaEnpirikoak();
 					}else if(aukera==9){
 						grafoa.print();
 					}else if(aukera==10){

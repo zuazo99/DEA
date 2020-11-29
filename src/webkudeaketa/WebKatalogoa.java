@@ -464,8 +464,8 @@ public class WebKatalogoa { //klase hau EMA,singleton patroia
 						String url2=sc.nextLine();
 						
 						boolean ondo=grafoa.erlazionatuta(url1, url2);
-						if(ondo)System.out.println("ONDOOOO!!!!");
-						else System.out.println("MAAAAAAAAAAAAAAL!!!");
+						if(ondo)System.out.println("ONDOOOO erlazioa dago!!!!");
+						else System.out.println("TXARTOOO ez dago erlaziorik!!!");
 					}else if(aukera==11){
 						System.out.println("Sartu nahi duzun url-a,root moduan arituko duena");
 						Scanner sc = new Scanner(System.in);

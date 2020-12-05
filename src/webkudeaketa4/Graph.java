@@ -7,6 +7,7 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.Queue;
+import java.util.regex.Matcher;
 
 import webkudeaketa.WebKatalogoa;
 import webkudeaketa.WebOrri;
@@ -16,6 +17,8 @@ public class Graph {
       HashMap<String, Integer> th; //URl bakoitzeko, identifikatzailea
       String[] keys; //Identifikatzaile bakoitzeko, url
       ArrayList<Integer>[] adjList; //URl bakoitza zein URl-ekin erlazionatuta dagoen
+      HashMap<String , Double> pageRank; //url bakoitzak zein pageRank balorea du
+      private static double dampingFactor=0.85;
       
       public Graph(){
   
@@ -28,11 +31,16 @@ public class Graph {
 		this.th=new HashMap<String, Integer>();
   	  	this.adjList= new ArrayList[lista.size()];
   	  	this.keys = new String[lista.size()];
+  	  	this.pageRank= new HashMap<String, Double>();
+		double PR=1.00/(double)(lista.size());
+		System.out.println("la lista mide:"+lista.size());
+  	  	
   	  	
   	  	//hasieratzeko
 		for (int i = 0; i < lista.size(); i++) {
 			this.adjList[i]=new ArrayList<Integer>();
 		}
+		
 		
 		Iterator<WebOrri> iterar=lista.iterator();
 		while(iterar.hasNext()){
@@ -47,7 +55,8 @@ public class Graph {
 			// 2. pausua: “keys” bete			
 			
 			keys[th.get(web.getUrl())] = web.getUrl();
-			
+			this.pageRank.put(web.getUrl(), PR);
+			System.out.println(pageRank.get(web.getUrl()));
 			// 3. pausua: “adjList” bete            
 			
 			int indizea=web.getIndizea();
@@ -61,9 +70,28 @@ public class Graph {
 				}
 			}
 		}
-		
+		/*//pageRank hasieratzeko
+		for (int i = 0; i < this.keys.length; i++) {
+			this.pageRank.put(this.keys[i], PR);
+		}
+		*/
 		
 	}
+	
+	/*public HashMap<String, Double> pageRankHasieratu(){
+		HashMap<String, Double> emaitza= new HashMap<String, Double>();
+
+		double PR=1.00/th.size();
+		for(int i=0;i<this.keys.length;i++){
+			emaitza.put(this.keys[i], PR);
+		}
+		return emaitza;
+	}
+	*/
+	
+	
+	
+	
 	
 	//th HashMap-era gehitzeko datuak.
 	public void gehituWebOrria(WebOrri web){
@@ -205,38 +233,46 @@ public class Graph {
 		System.out.println((denbora/n)+" Milisegundo behar ditu batazbeste,konexioa egiaztatzeko");
 	}
 	
-	public int estekaKopurua(String url){
-		int indizea=this.th.get(url);
-		int kopurua=adjList[indizea].size();
-		return kopurua;
-	}
-	
 	public double AEstekatzenPR(int zbk){
 		int i=0;
 		String url;
-		HashMap<String, Double> bilatu=pageRank();
-		double pr,c,emaitza=0;
+		double pr,c,emaitza=0.0;
 		while(i<adjList.length){
 			if(adjList[i].contains(zbk)){
-				pr=bilatu.get(keys[i]);
-				c=adjList[i].size();
+				pr=pageRank.get(keys[i]);
+				c=(double)(adjList[i].size());
 				emaitza+=pr/c;
 			}
 			i++;
 		}
 		return emaitza;
 	}
-	
-	
+		
 	public HashMap<String, Double> pageRank(){
-		HashMap<String, Double> emaitza= new HashMap<String, Double>();
-		String url;
-		double PR=1.00/th.size();
-		double d=0.85;
-		for(int i=0;i<this.keys.length;i++){
-			emaitza.put(this.keys[i], PR);
+		HashMap<String, Double> emaitza = null;
+		double PR,PRA,kenketa=0.0;
+		boolean amaitu=false;
+		for(int i=0; !amaitu; i++){
+			PRA=pageRank.get(keys[i]);
+			PR=((1.00-dampingFactor)/(double)(keys.length))+dampingFactor*AEstekatzenPR(i);
+			pageRank.put(this.keys[i], PR);
+			kenketa+=Math.abs(PRA-PR);
+			System.out.println(pageRank.get(keys[i]));
+			if(kenketa<0.0001){
+				amaitu=true;
+			}
 		}
 		
+		return emaitza;
+	}
+	public void pageRankInprimatu(){
+		String url;
+		double pr;
+		for (int i = 0; i < 100; i++) {
+			url=keys[i];
+			pr=pageRank.get(url);
+			System.out.println(url+":--------->"+pr);		
+		}
 	}
 	
 }

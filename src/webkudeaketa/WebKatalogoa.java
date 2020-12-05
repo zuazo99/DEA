@@ -2,7 +2,7 @@ package webkudeaketa;
 
 import webkudeaketa2.Node;
 import webkudeaketa2.UnorderedCircularLinkedList;
-import webkudeaketa3.Graph;
+import webkudeaketa4.Graph;
 
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -15,6 +15,7 @@ import java.nio.file.StandardOpenOption;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.Map;
 import java.util.Scanner;
 
 public class WebKatalogoa { //klase hau EMA,singleton patroia
@@ -184,6 +185,8 @@ public class WebKatalogoa { //klase hau EMA,singleton patroia
 		
 		try{
 			Scanner sc= new Scanner(new FileReader("index"));
+			//Scanner sc= new Scanner(new FileReader("prueba.txt"));
+
 			String [] StringMoztu=null;
 			WebOrri weborri=null;
 			GakoHitz gako=null;
@@ -237,6 +240,8 @@ public class WebKatalogoa { //klase hau EMA,singleton patroia
 		int kont=0;
 		try {
 			Scanner sc= new Scanner(new FileReader("pld-arcs-1-N"));
+			//Scanner sc= new Scanner(new FileReader("enlaces.txt"));
+
 			WebOrri web,estekaWeb=null;
 			String [] moztu;
 			
@@ -364,11 +369,11 @@ public class WebKatalogoa { //klase hau EMA,singleton patroia
 			System.out.println("9.Grafoa inprimatu");
 			System.out.println("10.Graph erlazionatuta metodoa");
 			System.out.println("11.Graph elarzionatutaBidea metodoa");
-			System.out.println("");
+			System.out.println("PageRank");
 			boolean aukeraEgokia=false;
 			while(!aukeraEgokia){
 				aukera=WebKatalogoa.irakurriZenb();
-				if(aukera>=1 && aukera<=11){
+				if(aukera>=1 && aukera<=12){
 					aukeraEgokia=true;
 				}
 				else{
@@ -453,7 +458,7 @@ public class WebKatalogoa { //klase hau EMA,singleton patroia
 						System.out.println("Grafoa sortuko da");
 						
 						grafoa.grafoaSortu(WebKatalogoa.getNireWebOrriak().getLista());
-						grafoa.probaEnpirikoak();
+						//grafoa.probaEnpirikoak();
 					}else if(aukera==9){
 						grafoa.print();
 					}else if(aukera==10){
@@ -481,6 +486,16 @@ public class WebKatalogoa { //klase hau EMA,singleton patroia
 								System.out.println(i+":"+emaitza.get(i));
 							}
 						}
+					}else if(aukera==12){
+						HashMap<String, Double> emaitza=grafoa.pageRank();
+						grafoa.pageRankInprimatu();
+						/*
+						for(Map.Entry<String, Double> x : emaitza.entrySet()){
+							String key= x.getKey();
+							double value= x.getValue();
+							System.out.println(key+":--------->"+value);
+						}
+						*/
 					}
 					
 					else {

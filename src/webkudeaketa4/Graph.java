@@ -1,4 +1,4 @@
-package webkudeaketa3;
+package webkudeaketa4;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;
@@ -203,6 +203,40 @@ public class Graph {
 		System.out.println(t+ "True kasu egon dira");
 		System.out.println(f+ "False kasu egon dira");
 		System.out.println((denbora/n)+" Milisegundo behar ditu batazbeste,konexioa egiaztatzeko");
+	}
+	
+	public int estekaKopurua(String url){
+		int indizea=this.th.get(url);
+		int kopurua=adjList[indizea].size();
+		return kopurua;
+	}
+	
+	public double AEstekatzenPR(int zbk){
+		int i=0;
+		String url;
+		HashMap<String, Double> bilatu=pageRank();
+		double pr,c,emaitza=0;
+		while(i<adjList.length){
+			if(adjList[i].contains(zbk)){
+				pr=bilatu.get(keys[i]);
+				c=adjList[i].size();
+				emaitza+=pr/c;
+			}
+			i++;
+		}
+		return emaitza;
+	}
+	
+	
+	public HashMap<String, Double> pageRank(){
+		HashMap<String, Double> emaitza= new HashMap<String, Double>();
+		String url;
+		double PR=1.00/th.size();
+		double d=0.85;
+		for(int i=0;i<this.keys.length;i++){
+			emaitza.put(this.keys[i], PR);
+		}
+		
 	}
 	
 }

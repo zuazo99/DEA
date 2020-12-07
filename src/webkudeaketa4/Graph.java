@@ -1,14 +1,10 @@
 package webkudeaketa4;
 
 import java.lang.reflect.Array;
-import java.util.ArrayList;
 import java.util.*;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.LinkedList;
-import java.util.Queue;
 import java.util.regex.Matcher;
 
+import webkudeaketa.GakoHitzKatalogoa;
 import webkudeaketa.WebKatalogoa;
 import webkudeaketa.WebOrri;
 
@@ -249,10 +245,11 @@ public class Graph {
 	}
 		
 	public HashMap<String, Double> pageRank(){
+		long hasiera=System.currentTimeMillis();
 		HashMap<String, Double> emaitza = null;
 		double PR,PRA,kenketa=0.0;
 		boolean amaitu=false;
-		for(int i=0; !amaitu; i++){
+		for(int i=0;i<100; i++){
 			PRA=pageRank.get(keys[i]);
 			PR=((1.00-dampingFactor)/(double)(keys.length))+dampingFactor*AEstekatzenPR(i);
 			pageRank.put(this.keys[i], PR);
@@ -262,6 +259,9 @@ public class Graph {
 				amaitu=true;
 			}
 		}
+		long bukaera=System.currentTimeMillis();
+		double denbora=(double)((bukaera-hasiera)/1000);
+		System.out.println(denbora+"segundu");
 		
 		return emaitza;
 	}
@@ -274,5 +274,64 @@ public class Graph {
 			System.out.println(url+":--------->"+pr);		
 		}
 	}
+	
+	public ArrayList<Bikote> bilatzailea(String gakoHitz){
+		/* Post: Emaitza emandako gako-hitza duten web-orrien zerrenda da, bere
+		pagerank-aren arabera handienetik txikienera ordenatuta (hau da,
+		lehenengo posizioetan pagerank handiena duten web-orriak agertuko dira)
+		*/
+		ArrayList<Bikote> emaitza=new ArrayList<Bikote>();
+		ArrayList<WebOrri> web=GakoHitzKatalogoa.getNireGakoHitzak().word2Webs(gakoHitz);
+		WebOrri weba;
+		String url;
+		double pr;
+		Iterator<WebOrri> itr=web.iterator();
+		while(itr.hasNext()){
+			weba=itr.next();
+			url=weba.getUrl();
+			pr=pageRank.get(url);
+			Bikote biko=new Bikote(url,pr);
+			emaitza.add(biko);
+		}
+		Collections.sort(emaitza, new Comparator<Bikote>() {
+			public int compare(Bikote bik1, Bikote bik2) {
+				return new Double(bik2.getPageRank()).compareTo(new Double(bik1.getPageRank()));
+			}
+
+			
+		});
+		return emaitza;
+	}
+	
+	public ArrayList<Bikote> bilatazilea2(String gakoHitz1,String gakoHitz2){
+		ArrayList<Bikote> emaitza=new ArrayList<Bikote>();
+		ArrayList<WebOrri> web1=GakoHitzKatalogoa.getNireGakoHitzak().word2Webs(gakoHitz1);
+		ArrayList<WebOrri> web2=GakoHitzKatalogoa.getNireGakoHitzak().word2Webs(gakoHitz2);
+		ArrayList<WebOrri> webGuztiak=new ArrayList<WebOrri>();
+		webGuztiak.addAll(web1);
+		webGuztiak.addAll(web2);
+		Iterator<WebOrri> itr=webGuztiak.iterator();
+		WebOrri weba;
+		String url;
+		double pr;
+		while(itr.hasNext()){
+			weba=itr.next();
+			url=weba.getUrl();
+			pr=pageRank.get(url);
+			Bikote biko=new Bikote(url,pr);
+			emaitza.add(biko);
+		}
+		Collections.sort(emaitza, new Comparator<Bikote>() {
+			public int compare(Bikote bik1, Bikote bik2) {
+				return new Double(bik2.getPageRank()).compareTo(new Double(bik1.getPageRank()));
+			}
+
+			
+		});
+		return emaitza;
+	}
+	
+	
+	
 	
 }

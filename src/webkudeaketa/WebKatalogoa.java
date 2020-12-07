@@ -2,6 +2,7 @@ package webkudeaketa;
 
 import webkudeaketa2.Node;
 import webkudeaketa2.UnorderedCircularLinkedList;
+import webkudeaketa4.Bikote;
 import webkudeaketa4.Graph;
 
 import java.io.FileNotFoundException;
@@ -369,11 +370,12 @@ public class WebKatalogoa { //klase hau EMA,singleton patroia
 			System.out.println("9.Grafoa inprimatu");
 			System.out.println("10.Graph erlazionatuta metodoa");
 			System.out.println("11.Graph elarzionatutaBidea metodoa");
-			System.out.println("PageRank");
+			System.out.println("12.PageRank");
+			System.out.println("13.Webak pagerankrekiko ordenatuta");
 			boolean aukeraEgokia=false;
 			while(!aukeraEgokia){
 				aukera=WebKatalogoa.irakurriZenb();
-				if(aukera>=1 && aukera<=12){
+				if(aukera>=1 && aukera<=13){
 					aukeraEgokia=true;
 				}
 				else{
@@ -496,6 +498,14 @@ public class WebKatalogoa { //klase hau EMA,singleton patroia
 							System.out.println(key+":--------->"+value);
 						}
 						*/
+					}else if(aukera==13){
+						System.out.println("Lehenik eta behin idatzi sartu gako hitza eta Enter tekla sakatu:\n");
+						Scanner sc = new Scanner(System.in);
+						String s=sc.nextLine();
+						ArrayList<Bikote> emaitza=grafoa.bilatzailea(s);
+						for (int i = 0; i < 100; i++) {
+							System.out.println(emaitza.get(i).getWeb()+"------>"+emaitza.get(i).getPageRank());
+						}
 					}
 					
 					else {

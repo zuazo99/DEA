@@ -53,6 +53,7 @@ public class Graph {
 			keys[th.get(web.getUrl())] = web.getUrl();
 			this.pageRank.put(web.getUrl(), PR);
 			System.out.println(pageRank.get(web.getUrl()));
+			
 			// 3. pausua: “adjList” bete            
 			
 			int indizea=web.getIndizea();
@@ -66,24 +67,7 @@ public class Graph {
 				}
 			}
 		}
-		/*//pageRank hasieratzeko
-		for (int i = 0; i < this.keys.length; i++) {
-			this.pageRank.put(this.keys[i], PR);
-		}
-		*/
-		
 	}
-	
-	/*public HashMap<String, Double> pageRankHasieratu(){
-		HashMap<String, Double> emaitza= new HashMap<String, Double>();
-
-		double PR=1.00/th.size();
-		for(int i=0;i<this.keys.length;i++){
-			emaitza.put(this.keys[i], PR);
-		}
-		return emaitza;
-	}
-	*/
 	
 	
 	

@@ -372,10 +372,11 @@ public class WebKatalogoa { //klase hau EMA,singleton patroia
 			System.out.println("11.Graph elarzionatutaBidea metodoa");
 			System.out.println("12.PageRank");
 			System.out.println("13.Webak pagerankrekiko ordenatuta");
+			System.out.println("14.Webak 2 gaho-hitza-rekiko eta haien pagerankerekiko ordenatuta");
 			boolean aukeraEgokia=false;
 			while(!aukeraEgokia){
 				aukera=WebKatalogoa.irakurriZenb();
-				if(aukera>=1 && aukera<=13){
+				if(aukera>=1 && aukera<=14){
 					aukeraEgokia=true;
 				}
 				else{
@@ -505,6 +506,17 @@ public class WebKatalogoa { //klase hau EMA,singleton patroia
 						ArrayList<Bikote> emaitza=grafoa.bilatzailea(s);
 						for (int i = 0; i < 100; i++) {
 							System.out.println(emaitza.get(i).getWeb()+"------>"+emaitza.get(i).getPageRank());
+						}
+					}else if(aukera==14){
+						System.out.println("Lehenik eta behin idatzi sartu gako hitza eta Enter tekla sakatu:\n");
+						Scanner sc = new Scanner(System.in);
+						String s=sc.nextLine();
+						System.out.println("idatzi bigarren gako hitza eta Enter tekla sakatu:\n");
+						String s2=sc.nextLine();
+						ArrayList<Bikote> emaitza=grafoa.bilatazilea2(s,s2);
+						for (Bikote bikote : emaitza) {
+							System.out.println(bikote.getWeb()+"------>"+bikote.getPageRank());
+							
 						}
 					}
 					

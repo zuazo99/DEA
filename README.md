@@ -1,2 +1,2 @@
 # DEA
-Proyecto de EDA.
+Proyecto de DEA.
